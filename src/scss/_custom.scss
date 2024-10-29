@@ -165,16 +165,29 @@
     border-radius: 4px;
 }
 
-.design-box{
+.design-box {
     border: 1px solid rgb(224, 224, 224) !important;
     border-radius: 4px;
     padding: 10px;
 }
-.preview-btn{
+
+.preview-btn {
     background-color: #3b7ddd;
     padding: 4px;
 }
-.generate-btn{
+
+.generate-btn {
     padding: 4px;
 }
-.single-color{cursor: pointer;}
+
+.single-color {
+    cursor: pointer;
+}
+
+.line {
+    background-color: #0d6efd;
+    height: 20px;
+    width: 98%;
+    border-radius: 4px;
+    margin: 0 auto;
+}

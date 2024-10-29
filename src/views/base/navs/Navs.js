@@ -30,7 +30,7 @@ const Navs = () => {
               overrides (for working with lists), some link padding for larger hit areas, and basic
               disabled styling.
             </p>
-            <DocsExample href="components/nav#base-nav">
+            <DocsExample href="components/nav#base-nav ">
               <CNav>
                 <CNavItem>
                   <CNavLink href="#" active>

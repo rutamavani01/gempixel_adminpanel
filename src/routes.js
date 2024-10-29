@@ -1,12 +1,12 @@
 import React from 'react';
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
-const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
-const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
+const Colors = React.lazy(() => import('./views/theme/colors/Biopages'))
+const Typography = React.lazy(() => import('./views/theme/typography/Qradd'))
 const Qrcode = React.lazy(() => import('./views/theme/qrcode/QrCode'))
 
 // Base
-const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
+const Accordion = React.lazy(() => import('./views/base/accordion/Mychannel'))
 const Breadcrumbs = React.lazy(() => import('./views/base/breadcrumbs/Breadcrumbs'))
 const Cards = React.lazy(() => import('./views/base/cards/Cards'))
 const Carousels = React.lazy(() => import('./views/base/carousels/Carousels'))
