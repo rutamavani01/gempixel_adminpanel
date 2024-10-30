@@ -803,7 +803,7 @@ const Dashboard = () => {
                                   <button
                                     className='delete-btn d-block btn-danger d-block mt-2 mb-3'
                                     onClick={(event) => {
-                                      event.preventDefault(); // Prevent form submission
+                                      event.preventDefault(); 
                                       handleDeleteDeviceRow(index);
                                     }}
                                     type="button"
@@ -1141,12 +1141,12 @@ const Dashboard = () => {
                   </CModalHeader>
                   <CModalBody>
                     {modalType === 'archive' && (
-                      <div className="mb-4">
-                        <label className="d-block text-sm font-medium text-gray-700 mb-1 ">Archives</label>
-                        <select style={{ width: '100%' }} className="w-full px-3 py-2 border rounded-md bg-white" defaultValue="none">
-                          <option value="none">None</option>
-                          <option value="archive1">Archive 1</option>
-                          <option value="archive2">Archive 2</option>
+                      <div className="mb-4 qr-name">
+                        <label className="d-block text-sm font-medium text-gray-700 mb-1 qr-name ">Archives</label>
+                        <select style={{ width: '100%' }} className="w-full px-3 py-2 border rounded-md bg-white qr-name" defaultValue="none">
+                          <option value="none qr-name">None</option>
+                          <option value="archive1 qr-name">Archive 1</option>
+                          <option value="archive2 qr-name">Archive 2</option>
                         </select>
                       </div>
                     )}

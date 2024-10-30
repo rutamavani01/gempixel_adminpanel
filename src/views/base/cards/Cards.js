@@ -30,8 +30,6 @@ const Cards = () => {
   const [showChannel, setShowchannel] = useState(false);
   const [showPixel, setShowpixel] = useState(false);
 
-
-
   function exportToExcel(data, filename = 'data.xlsx') {
     const worksheet = XLSX.utils.json_to_sheet(data);
     const workbook = XLSX.utils.book_new();

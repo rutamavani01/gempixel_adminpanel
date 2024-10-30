@@ -56,10 +56,25 @@ const _nav = [
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
-          component: CNavItem,
-          name: 'Archived Links',
-          to: '/base/cards',   icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-        },
+    component: CNavItem,
+    name: 'Archived Links',
+    to: '/base/cards', icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Expired Links',
+    to: '/base/carousels', icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Campaigns ',
+    to: '/base/collapses', icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Custom Splash',
+    to: '/base/list-groups',  icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  },
   // {
   //   component: CNavGroup,
   //   name: 'Base',
