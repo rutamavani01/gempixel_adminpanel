@@ -176,7 +176,9 @@ const CtaContact = () => {
                                                         name="namePlaceholder"
                                                         value={formData.namePlaceholder}
                                                         onChange={handleInputChange}
+                                                        className='qr-name'
                                                     />
+                                                      <span className="ctaContact-span">If you want to use a different language, change these.</span>
                                                 </CCol>
                                                 <CCol md="3">
                                                     <label className="qr-name mb-3">Email Placeholder</label>
@@ -231,15 +233,10 @@ const CtaContact = () => {
                                     </CButton>
                                     <CCollapse visible={appearanceOpen}>
                                         <CCardBody>
-                                            <CRow className='qr-name'>
-                                                <CCol md="4">
+                                            <CRow className="qr-name">
+                                                <CCol md="4" className="qr-name mb-5">
                                                     <label className="mb-1">Form Background Color</label>
-                                                    <CFormInput
-                                                        type="color"
-                                                        value={formData.formBgColor}
-                                                        onChange={handleInputChange}
-                                                        name="formBgColor"
-                                                    />
+                                                    <CFormInput type="color" value={formBgColor} onChange={(e) => setFormBgColor(e.target.value)} />
                                                 </CCol>
                                                 <CCol md="4">
                                                     <label className="mb-1">Form Text Color</label>
@@ -308,7 +305,7 @@ const CtaContact = () => {
                         <b> <p className='qr-name p-2 text-start m-auto' > Need Help ?</p></b>
                     </CCard>
 
-                    <CCard className="p-3 mt-4 mb-3">
+                    {/* <CCard className="p-3 mt-4 mb-3">
                         <h6>{formlabel ? formlabel : 'Contact Form'}</h6>
 
                         <label className="qr-name mb-1"><b>{namePlaceholder} </b></label>
@@ -332,7 +329,66 @@ const CtaContact = () => {
                         >{sendPlaceholder}
                         </CButton>
 
+                    </CCard> */}
 
+                    <CCard className="p-3 mb-3" style={{ backgroundColor: formBgColor, color: formTextColor }}>
+                        <h6>Form Label</h6>
+                        <p className="qr-name">Form Description</p>
+
+                        <label className="qr-name mb-1"><b>Name</b></label>
+                        <input
+                            type="text"
+                            className="qr-name p-2 focus-ring mb-3"
+                            placeholder="john smith"
+                            style={{
+                                borderRadius: '4px',
+                                borderColor: 'rgba(184, 184, 184, 0.719)',
+                                borderWidth: '0.5px',
+                                backgroundColor: inputBgColor,
+                                color: inputTextColor
+                            }}
+                        />
+
+                        <label className="qr-name mb-1"><b>Email</b></label>
+                        <input
+                            type="text"
+                            className="qr-name p-2 focus-ring mb-3"
+                            placeholder="johnsmith@company.com"
+                            style={{
+                                borderRadius: '4px',
+                                borderColor: 'rgba(184, 184, 184, 0.719)',
+                                borderWidth: '0.5px',
+                                backgroundColor: inputBgColor,
+                                color: inputTextColor
+                            }}
+                        />
+
+                        <label className="qr-name mb-1"><b>Message</b></label>
+                        <textarea
+                            className="qr-name p-1 focus-ring mb-3"
+                            placeholder="..."
+                            rows={2}
+                            style={{
+                                borderRadius: '4px',
+                                borderColor: 'rgba(184, 184, 184, 0.719)',
+                                borderWidth: '0.5px',
+                                backgroundColor: inputBgColor,
+                                color: inputTextColor
+                            }}
+                        />
+
+                        <CButton
+                            style={{
+                                width: '15%',
+                                backgroundColor: buttonBgColor,
+                                color: buttonTextColor,
+                                borderColor: buttonBgColor
+                            }}
+                            className="btn btn-dark mt-3"
+                            size="sm"
+                        >
+                            <p className="p-0 m-0">send</p>
+                        </CButton>
                     </CCard>
 
                     <CCard className='p-3 mb-3'>
@@ -359,5 +415,4 @@ const CtaContact = () => {
         </CCardBody>
     )
 }
-
 export default CtaContact
