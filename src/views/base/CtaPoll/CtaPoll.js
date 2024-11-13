@@ -100,12 +100,12 @@ const CtaPoll = () => {
                       name="name"
                       value={formData.name}
                       className='qr-name'
-                      placeholder="e.g. Promo"
+                      placeholder="e.g. Poll"
                       onChange={handleInputChange}
                     />
                   </div>
                 </CCol>
-                <CCol md="6">
+                {/* <CCol md="6">
                   <div className="mb-3 qr-name">
                     <label htmlFor="email"><b>Send Email Address</b></label>
                     <CFormInput
@@ -118,14 +118,20 @@ const CtaPoll = () => {
                       onChange={handleInputChange}
                     />
                   </div>
-                </CCol>
-                <CCol md="6">
+                </CCol> */}
+                <CCol md="12">
                   <div className="mb-3 qr-name">
-                    <label htmlFor="subject"><b>Email Subject</b></label>
-                    <CFormInput type="text" className='qr-name' id="subject" placeholder="Something you would know where it comes from" />
+                    <label htmlFor="subject"><b>Question  </b></label>
+                    <CFormInput type="text" className='qr-name' id="subject" placeholder="e.g. What is your favorite color?" />
                   </div>
                 </CCol>
-                <CCol md="6">
+
+                <hr></hr>
+
+                <h6>Options (max 10)</h6>
+                <p>You can add up to 10 options for each poll. To add an extra option click Add Option above. To ignore a field, leave it empty.</p>
+
+                {/* <CCol md="6">
                   <div className="mb-3 qr-name">
                     <label htmlFor="formLabel"><b>Form Label</b><span className='ctaContact-span'> leave empty to disable</span></label>
                     <CFormInput type="text" value={formlabel} className='qr-name' id="formLabel" placeholder="e.g. Need help?" onChange={handleInputChange} />
@@ -149,7 +155,18 @@ const CtaPoll = () => {
                     <label htmlFor="thankYouMessage"><b>Thank You Message</b></label>
                     <CFormInput type="text" id="thankYouMessage" className='qr-name' placeholder="e.g. Thank you. We will respond asap." />
                   </div>
-                </CCol>
+                </CCol> */}
+
+                <CFormInput type='text'className='p-1 m-1' placeholder='#1'/>
+                <CFormInput type='text' className='p-1' placeholder='#2'/>
+                <CFormInput type='text' className='p-1' placeholder='#3'/>
+                <CFormInput type='text' className='p-1' placeholder='#4'/>
+                <CFormInput type='text' className='p-1' placeholder='#5'/>
+                <CFormInput type='text' className='p-1' placeholder='#6'/>
+                <CFormInput type='text' className='p-1' placeholder='#7'/>
+                <CFormInput type='text' className='p-1' placeholder='#8'/>
+                <CFormInput type='text' className='p-1' placeholder='#9'/>
+                <CFormInput type='text' className='p-1' placeholder='#10'/>
               </CRow>
             </CCard>
 
