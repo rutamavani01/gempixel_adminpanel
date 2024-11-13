@@ -12,7 +12,20 @@ const Cards = React.lazy(() => import('./views/base/cards/Cards'))
 const Carousels = React.lazy(() => import('./views/base/carousels/Carousels'))
 const Collapses = React.lazy(() => import('./views/base/collapses/Collapses'))
 const ListGroups = React.lazy(() => import('./views/base/list-groups/ListGroups'))
+const Customesplash = React.lazy(() => import('./views/base/Customesplash/Custom-splash'))
 const Navs = React.lazy(() => import('./views/base/navs/Navs'))
+
+const OverlayCreate = React.lazy(() => import('./views/base/OverlayCreate/Overlaycreate'))
+const CtaOverlay = React.lazy(() => import('./views/base/CtaOverlay/CtaOverlay'))
+const CtaContact = React.lazy(() => import('./views/base/CtaContact/CtaContact'))
+const EditCtaContact = React.lazy(() => import('./views/base/CtaContact/EditCtaContact'))
+const CtaCoupon = React.lazy(() => import('./views/base/CtaCoupon/CtaCoupon'))
+const CtaImage = React.lazy(() => import('./views/base/CtaImage/CtaImage'))
+const CtaMessage = React.lazy(() => import('./views/base/CtaMessage/CtaMessage'))
+const CtaNewsletter = React.lazy(() => import('./views/base/CtaNewsletter/CtaNewsletter'))
+const CtaPoll = React.lazy(() => import('./views/base/CtaPoll/CtaPoll'))
+
+
 const Paginations = React.lazy(() => import('./views/base/paginations/Paginations'))
 const Placeholders = React.lazy(() => import('./views/base/placeholders/Placeholders'))
 const Popovers = React.lazy(() => import('./views/base/popovers/Popovers'))
@@ -58,15 +71,29 @@ const routes = [
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },
-  { path: '/theme/qrcode',  name: 'Qrcode', element: Qrcode },
+  { path: '/theme/qrcode', name: 'Qrcode', element: Qrcode },
   { path: '/base', name: 'Base', element: Cards, exact: true },
-  { path: '/base/accordion', name: 'Accordion', element: Accordion }, 
+  { path: '/base/accordion', name: 'Accordion', element: Accordion },
   { path: '/base/breadcrumbs', name: 'Breadcrumbs', element: Breadcrumbs },
   { path: '/base/cards', name: 'Cards', element: Cards },
   { path: '/base/carousels', name: 'Carousel', element: Carousels },
   { path: '/base/collapses', name: 'Collapse', element: Collapses },
   { path: '/base/list-groups', name: 'List Groups', element: ListGroups },
+  { path: '/base/Customesplash', name: 'Custom Splash', element: Customesplash },
+  
   { path: '/base/navs', name: 'Navs', element: Navs },
+
+  { path: '/base/OverlayCreate', name: 'OverlayCreate', element: OverlayCreate },
+  { path: '/base/CtaOverlay', name: 'CtaOverlay', element: CtaOverlay },
+  { path: '/base/CtaContact', name: 'CtaContact', element: CtaContact },
+  { path: '/base/EditCtaContact', name: 'EditCtaContact', element: EditCtaContact },
+  { path: '/base/CtaCoupon', name: 'CtaCoupon', element: CtaCoupon },
+  { path: '/base/CtaImage', name: 'CtaImage', element: CtaImage },
+  { path: '/base/CtaMessage', name: 'CtaMessage', element: CtaMessage },
+  { path: '/base/CtaNewsletter', name: 'CtaNewsletter', element: CtaNewsletter },
+  { path: '/base/CtaPoll', name: 'CtaPoll', element: CtaPoll },
+
+
   { path: '/base/paginations', name: 'Paginations', element: Paginations },
   { path: '/base/placeholders', name: 'Placeholders', element: Placeholders },
   { path: '/base/popovers', name: 'Popovers', element: Popovers },

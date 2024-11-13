@@ -24,56 +24,62 @@ const _nav = [
     badge: {
       color: 'info',
       text: 'NEW',
-    },
+    }, className :"qr-name"
   },
   {
     component: CNavItem,
     name: 'Bio Pages',
     to: '/theme/colors',
-    icon: <CIcon icon={cilDrop} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilDrop} customClassName="nav-icon"  />, className :"qr-name"
   },
   {
     component: CNavItem,
     name: 'QR Code',
     to: '/theme/typography',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />, className :"qr-name"
   },
   {
     component: CNavTitle,
-    name: 'My Channel',
+    name: 'My Channel', className :"qr-name"
   },
   {
     component: CNavItem,
     name: 'My Channel',
     to: '/base/accordion',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />, className :"qr-name"
   },
 
   {
     component: CNavItem,
     name: 'Link',
     to: '/base/breadcrumbs',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />, className :"qr-name"
   },
   {
     component: CNavItem,
     name: 'Archived Links',
-    to: '/base/cards', icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+    to: '/base/cards', icon: <CIcon icon={cilPencil} customClassName="nav-icon" />, className :"qr-name"
   },
   {
     component: CNavItem,
     name: 'Expired Links',
-    to: '/base/carousels', icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  },
+    to: '/base/carousels', icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,className :"qr-name"
+  }, 
   {
     component: CNavItem,
     name: 'Campaigns ',
-    to: '/base/collapses', icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+    to: '/base/collapses', icon: <CIcon icon={cilPencil} customClassName="nav-icon" />, className :"qr-name"
   },
   {
     component: CNavItem,
     name: 'Custom Splash',
-    to: '/base/list-groups',  icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+    to: '/base/list-groups', icon: <CIcon icon={cilPencil} customClassName="nav-icon" />, className :"qr-name"
+  },
+  
+  {
+    component: CNavItem,
+    name: 'CTA Overlay',
+    to: '/base/navs', icon: <CIcon icon={cilPencil} customClassName="nav-icon"  />, className :"qr-name"
   },
   // {
   //   component: CNavGroup,

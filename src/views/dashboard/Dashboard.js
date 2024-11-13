@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import { useState } from 'react';
-import { X , Globe, User, MoreVertical} from 'lucide-react';
+import { X, Globe, User, MoreVertical } from 'lucide-react';
 import {
   CAvatar,
   CButton,
@@ -430,14 +430,13 @@ const Dashboard = () => {
   ];
 
   return (
-
     <>
       <div className='col-12 row justify-content-start align-items-center section-margin'>
         <div className='col-xl-3 col-lg-3 col-md-3 col-xs-6 col-sm-6  row justify-content-between align-items-center'>
           <div className='mb-3'>
             <CCard>
               <CCardBody>
-                <h3>Links</h3>
+                <h6>Links</h6>
                 <h3>3</h3>
                 <p className='mt-4'>+0 Today</p>
               </CCardBody>
@@ -446,7 +445,7 @@ const Dashboard = () => {
           <div className=''>
             <CCard>
               <CCardBody>
-                <h3>Links</h3>
+                <h6>Links</h6>
                 <h3>3</h3>
                 <p className='mt-4'>+0 Today</p>
               </CCardBody>
@@ -460,16 +459,15 @@ const Dashboard = () => {
             </CCardBody>
           </CCard>
         </div>
-
       </div>
 
       <div className='col-12 d-flex justify-content-between qr-name'>
         <div className='col-6 '>
-          <CRow style={{width:'99%'}}>
+          <CRow style={{ width: '99%' }}>
             <CCol xs={12} className=' qr-name'>
               <CCard className="mb-4">
                 <CCardBody className=' qr-name'>
-                  <div className="d-flex align-items-center gap-2 mb-3">
+                  <div className="d-flex align-items-center gap-2 mb-3 qr-name">
                     <CFormInput
                       type="url"
                       placeholder="Paste a long link"
@@ -488,10 +486,10 @@ const Dashboard = () => {
                   </div>
 
                   <div className="d-flex justify-content-end gap-2 mb-3  qr-name">
-                    <CButton color="light" variant="outline" className=' qr-name'>
+                    <CButton color="light" variant="" className=' qr-name'>
                       Single
                     </CButton>
-                    <CButton color="light" variant="outline" className=' qr-name'>
+                    <CButton color="light" variant="" className=' qr-name'>
                       Multiple
                     </CButton>
                   </div>
@@ -501,9 +499,9 @@ const Dashboard = () => {
                       <CRow className="g-3">
                         <CCol md={6}>
                           <div className="mb-3">
-                            <label className="form-label">Domain</label>
-                            <CFormSelect>
-                              <option className=' qr-name'>https://demo.gempixel.com/short</option>
+                            <label className="form-label ">Domain</label>
+                            <CFormSelect className='qr-name'>
+                              <option className='qr-name'>https://demo.gempixel.com/short</option>
                             </CFormSelect>
                           </div>
                         </CCol>
@@ -558,13 +556,13 @@ const Dashboard = () => {
                       </CRow>
 
                       <CDropdown isOpen={isOpen} style={{ color: 'white' }} toggle={handleCustomizeClick} className="customize-btn mt-3 qr-name">
-                        <CDropdownToggle caret>
-                          <CButton style={{ color: 'white' }} className=' qr-name'>
-                            <CIcon icon={cilSettings} size="md"className=' qr-name' />  Customize
+                        <CDropdownToggle caret className='qr-name'>
+                          <CButton style={{ color: 'white' }} className=' qr-name p-0'>
+                            <CIcon icon={cilSettings} size="md" className=' qr-name p-0' />  Customize
                           </CButton>
                         </CDropdownToggle>
                         <CDropdownMenu>
-                          <CDropdownItem onClick={handleMetaTagsClick} className=' qr-name'> 
+                          <CDropdownItem onClick={handleMetaTagsClick} className=' qr-name'>
                             <CIcon icon={cilTag} size="md" className="me-2" />
                             Meta Tags
                           </CDropdownItem>
@@ -576,7 +574,7 @@ const Dashboard = () => {
                             <CIcon icon={cilLink} size="md" className="me-2" />
                             Deep Linking
                           </CDropdownItem>
-                          <CDropdownItem onClick={handleDeepLinking } className=' qr-name'>
+                          <CDropdownItem onClick={handleDeepLinking} className=' qr-name'>
                             <CIcon icon={cilDevices} size="md" className="me-2" />
                             Device Targeting
                           </CDropdownItem>
@@ -608,20 +606,20 @@ const Dashboard = () => {
                         <CCard className='mt-3'>
                           <CCardBody>
                             <div className="meta-tags-form qr-name">
-                              <h4 className='mb-2'>  <CIcon icon={cilTag} size="lg" className="me-2" />Meta Tags</h4>
+                              <h6 className='mb-2 '>  <CIcon icon={cilTag} size="sm" className="me-1" />Meta Tags</h6>
                               <form className='d-flex justify-content-between'>
                                 <div className='col-4'>
-                                  <label className='mb-1 meta-tag-label qr-name'><h6>Custom Banner:</h6></label>
+                                  <label className='mb-1 meta-tag-label '><h6 className='qr-name'>Custom Banner:</h6></label>
                                   <div className='selected-input2' style={{ width: "90%" }} >
                                     <input className='selected-input' type="file" style={{ width: "90%" }} />
                                   </div>
                                 </div>
                                 <div className='col-4'>
-                                  <label className='mb-1 meta-tag-label qr-name'><h6>Meta Title:</h6></label>
+                                  <label className='mb-1 meta-tag-label qr-name'><h6 className='qr-name'>Meta Title:</h6></label>
                                   <input className='selected-input' style={{ width: "90%" }} type="text" placeholder="Enter your custom meta title" />
                                 </div>
                                 <div className='col-4'>
-                                  <label className='mb-1 meta-tag-label'><h6>Meta Description:</h6></label>
+                                  <label className='mb-1 meta-tag-label'><h6 className='qr-name'>Meta Description:</h6></label>
                                   <input className='selected-input' style={{ width: "90%" }} type="text" placeholder="Enter your custom meta description" />
                                 </div>
                               </form>
@@ -637,7 +635,7 @@ const Dashboard = () => {
                             <div className="geo-targeting-form">
                               <div className='col-12 d-flex justify-content-between'>
                                 <div className='col-6'>
-                                  <h4 className='mb-2'><CIcon icon={cilLocationPin} size="lg" className="me-2" /> Geo Targeting</h4>
+                                  <h6 className='mb-2'><CIcon icon={cilLocationPin} size="lg" className="" /> Geo Targeting</h6>
                                 </div>
                                 <div className='col-6 d-flex justify-content-end'>
                                   <span><button className='add-btn' onClick={handleAddRow}>+ Add</button></span>
@@ -645,11 +643,11 @@ const Dashboard = () => {
                               </div>
                               {geoRows.map((row, index) => (
                                 <form key={index} className='d-flex flex-wrap justify-content-between'>
-                                  <div className='col-4'>
-                                    <label className='meta-tag-label'><h6>Country:</h6></label>
+                                  <div className='col-4 '>
+                                    <label className='meta-tag-label'><h6 className='qr-name'>Country:</h6></label>
                                     <input
                                       name="country"
-                                      className='selected-input'
+                                      className='selected-input qr-name'
                                       style={{ width: "90%" }}
                                       type="text"
                                       placeholder="Enter country"
@@ -658,7 +656,7 @@ const Dashboard = () => {
                                     />
                                   </div>
                                   <div className='col-4'>
-                                    <label className='meta-tag-label'><h6>Region:</h6></label>
+                                    <label className='meta-tag-label'><h6 className='qr-name'>Region:</h6></label>
                                     <input
                                       name="region"
                                       className='selected-input'
@@ -670,7 +668,7 @@ const Dashboard = () => {
                                     />
                                   </div>
                                   <div className='col-4'>
-                                    <label className='meta-tag-label'><h6>City:</h6></label>
+                                    <label className='meta-tag-label'><h6 className='qr-name'>City:</h6></label>
                                     <input
                                       name="city"
                                       className='selected-input'
@@ -730,12 +728,12 @@ const Dashboard = () => {
 
                                 <div className="mb-3">
                                   <label htmlFor="appStoreLink" className="form-label">Link to App Store</label>
-                                  <input type="text" className="form-control" id="appStoreLink" placeholder="https://" />
+                                  <input type="text" className="form-control qr-name" id="appStoreLink" placeholder="https://" />
                                 </div>
 
                                 <div className="mb-3">
                                   <label htmlFor="googlePlayLink" className="form-label">Link to Google Play</label>
-                                  <input type="text" className="form-control" id="googlePlayLink" placeholder="https://" />
+                                  <input type="text" className="form-control qr-name" id="googlePlayLink" placeholder="https://" />
                                 </div>
                               </div>
                             )}
@@ -750,9 +748,9 @@ const Dashboard = () => {
                             <div className="device-targeting-form">
                               <div className='col-12 d-flex justify-content-between'>
                                 <div className='col-6'>
-                                  <h4 className='mb-2'>
-                                    <CIcon icon={cilLink} className="me-2" /> Device Targeting
-                                  </h4>
+                                  <h6 className='mb-2'>
+                                    <CIcon icon={cilLink} className="" /> Device Targeting
+                                  </h6>
                                 </div>
                                 <div className='col-6 d-flex justify-content-end'>
                                   <span>
@@ -764,7 +762,7 @@ const Dashboard = () => {
                               {deviceRows.map((row, index) => (
                                 <form key={index} className='d-flex flex-wrap justify-content-between'>
                                   <div className='col-6'>
-                                    <label className='meta-tag-label'><h6>Device Type:</h6></label>
+                                    <label className='meta-tag-label'><h6 className='qr-name'>Device Type:</h6></label>
                                     <input
                                       name="deviceType"
                                       className='selected-input'
@@ -776,7 +774,7 @@ const Dashboard = () => {
                                     />
                                   </div>
                                   <div className='col-6'>
-                                    <label className='meta-tag-label'><h6>Operating System:</h6></label>
+                                    <label className='meta-tag-label'><h6 className='qr-name'>Operating System:</h6></label>
                                     <input
                                       name="os"
                                       className='selected-input'
@@ -788,7 +786,7 @@ const Dashboard = () => {
                                     />
                                   </div>
                                   <div className='col-12 mt-2'>
-                                    <label className='meta-tag-label'><h6>Browser:</h6></label>
+                                    <label className='meta-tag-label'><h6 className='qr-name'> Browser:</h6></label>
                                     <input
                                       name="browser"
                                       className='selected-input '
@@ -803,7 +801,7 @@ const Dashboard = () => {
                                   <button
                                     className='delete-btn d-block btn-danger d-block mt-2 mb-3'
                                     onClick={(event) => {
-                                      event.preventDefault(); 
+                                      event.preventDefault();
                                       handleDeleteDeviceRow(index);
                                     }}
                                     type="button"
@@ -824,9 +822,9 @@ const Dashboard = () => {
                             <div className="language-targeting-form">
                               <div className='col-12 d-flex justify-content-between'>
                                 <div className='col-6'>
-                                  <h4 className='mb-2'>
-                                    <CIcon icon={cilGlobeAlt} className="me-2" /> Language Targeting
-                                  </h4>
+                                  <h6 className='mb-2'>
+                                    <CIcon icon={cilGlobeAlt} className="me-1" /> Language Targeting
+                                  </h6>
                                 </div>
                                 <div className='col-6 d-flex justify-content-end'>
                                   <span>
@@ -838,7 +836,7 @@ const Dashboard = () => {
                               {languageRows.map((row, index) => (
                                 <form key={index} className='d-flex flex-wrap justify-content-between'>
                                   <div className='col-6'>
-                                    <label className='meta-tag-label'><h6>Language:</h6></label>
+                                    <label className='meta-tag-label'><h6 className='qr-name'>Language:</h6></label>
                                     <input
                                       name="language"
                                       className='selected-input'
@@ -850,7 +848,7 @@ const Dashboard = () => {
                                     />
                                   </div>
                                   <div className='col-6'>
-                                    <label className='meta-tag-label'><h6>Proficiency:</h6></label>
+                                    <label className='meta-tag-label'><h6 className='qr-name'>Proficiency:</h6></label>
                                     <input
                                       name="proficiency"
                                       className='selected-input'
@@ -886,9 +884,9 @@ const Dashboard = () => {
                             <div className="language-targeting-form">
                               <div className='col-12 d-flex justify-content-between'>
                                 <div className='col-12'>
-                                  <h4 className='mb-2'>
-                                    <CIcon icon={cilBorderAll} className="me-2" />Targeting Pixels
-                                  </h4>
+                                  <h6 className='mb-2'>
+                                    <CIcon icon={cilBorderAll} className="me-1" />Targeting Pixels
+                                  </h6>
                                   <p>Add your targeting pixels below from the list. Please make sure to enable them in the pixels settings.</p>
                                 </div>
 
@@ -897,7 +895,7 @@ const Dashboard = () => {
                               {languageRows.map((row, index) => (
                                 <form key={index} className='d-flex flex-wrap justify-content-between'>
                                   <div className='col-12'>
-                                    <label className='meta-tag-label'><h6>Language:</h6></label>
+                                    <label className='meta-tag-label'><h6 className='qr-name'>Language:</h6></label>
                                     <input
                                       name="language"
                                       className='selected-input'
@@ -920,32 +918,32 @@ const Dashboard = () => {
                         <CCard className='mt-3'>
                           <CCardBody>
                             <div className="language-targeting-form">
-                              <div className='col-12'>
-                                <h4 className='mb-2'>
+                              <div className='col-12 '>
+                                <h6 className='mb-2'>
                                   <CIcon icon={cilAsterisk} className="me-2" /> Expiration
-                                </h4>
+                                </h6>
                                 <p className='expiration-p'>
                                   Links can be expired based on the amount of clicks or a specific date.
                                   You can also set a URL to redirect when the link expires.
                                 </p>
                               </div>
                               <div className='row'>
-                                <div className='col-6'>
-                                  <h5>Link Expiration</h5>
-                                  <p>Set an expiration date to disable the link.</p>
+                                <div className='col-6 mb-2'>
+                                  <p className='mb-0'><b>Link Expiration</b></p>
+                                  <p className='mb-1'>Set an expiration date to disable the link.</p>
                                   <input
                                     type='date'
-                                    className='form-control'
+                                    className='form-control qr-name'
                                     value={expirationDate}
                                     onChange={handleDateChange}
                                   />
                                 </div>
                                 <div className='col-6'>
-                                  <h5>Click Limit</h5>
+                                  <p className='mb-0'><b>Click Limit</b></p>
                                   <p>Limit the number of clicks.</p>
                                   <input
                                     type='number'
-                                    className='form-control'
+                                    className='form-control qr-name'
                                     placeholder='e.g. 100'
                                     value={clickLimit}
                                     onChange={handleClickLimitChange}
@@ -955,7 +953,7 @@ const Dashboard = () => {
                               </div>
 
                               <div className='col-12'>
-                                <h5>Expiration Redirect</h5>
+                                <p className='mb-0'><b>Expiration Redirect</b></p>
                                 <p>Set a link to redirect traffic to when the short link expires.</p>
                                 <input type='text' className='selected-input' style={{ width: '100%' }} placeholder='Type the url to redirect user to' />
                               </div>
@@ -971,7 +969,7 @@ const Dashboard = () => {
                             <div className="geo-targeting-form">
                               <div className='col-12 d-flex justify-content-between'>
                                 <div className='col-6'>
-                                  <h4 className='mb-2'><CIcon icon={cilLocationPin} size="lg" className="me-2" /> Geo Targeting</h4>
+                                  <h6 className='mb-2'><CIcon icon={cilLocationPin} size="sm" className="" /> Geo Targeting</h6>
                                 </div>
                                 <div className='col-6 d-flex justify-content-end'>
                                   <span><button className='add-btn' onClick={handleAddRow}>+ Add</button></span>
@@ -980,10 +978,10 @@ const Dashboard = () => {
                               {geoRows.map((row, index) => (
                                 <form key={index} className='d-flex flex-wrap justify-content-between'>
                                   <div className='col-4'>
-                                    <label className='meta-tag-label'><h6>Country:</h6></label>
+                                    <label className='meta-tag-label'><h6 className='qr-name'>Country:</h6></label>
                                     <input
                                       name="country"
-                                      className='selected-input'
+                                      className='selected-input qr-name'
                                       style={{ width: "90%" }}
                                       type="text"
                                       placeholder="Enter country"
@@ -992,10 +990,10 @@ const Dashboard = () => {
                                     />
                                   </div>
                                   <div className='col-4'>
-                                    <label className='meta-tag-label'><h6>Region:</h6></label>
+                                    <label className='meta-tag-label'><h6 className='qr-name'>Region:</h6></label>
                                     <input
                                       name="region"
-                                      className='selected-input'
+                                      className='selected-input qr-name'
                                       style={{ width: "90%" }}
                                       type="text"
                                       placeholder="Enter region"
@@ -1004,10 +1002,10 @@ const Dashboard = () => {
                                     />
                                   </div>
                                   <div className='col-4'>
-                                    <label className='meta-tag-label'><h6>City:</h6></label>
+                                    <label className='meta-tag-label'><h6 className='qr-name'>City:</h6></label>
                                     <input
                                       name="city"
-                                      className='selected-input'
+                                      className='selected-input qr-name'
                                       style={{ width: "90%" }}
                                       type="text"
                                       placeholder="Enter city"
@@ -1040,7 +1038,7 @@ const Dashboard = () => {
                             <div className="geo-targeting-form">
                               <div className='col-12 d-flex justify-content-between'>
                                 <div className='col-6'>
-                                  <h4 className='mb-2'><CIcon icon={cilLocationPin} size="lg" className="me-2" /> Geo Targeting</h4>
+                                  <h6 className='mb-2'><CIcon icon={cilLocationPin} size="sm" className="me-1" /> Geo Targeting</h6>
                                 </div>
                                 <div className='col-6 d-flex justify-content-end'>
                                   <span><button className='add-btn' onClick={handleAddRow}>+ Add</button></span>
@@ -1049,10 +1047,10 @@ const Dashboard = () => {
                               {geoRows.map((row, index) => (
                                 <form key={index} className='d-flex flex-wrap justify-content-between'>
                                   <div className='col-4'>
-                                    <label className='meta-tag-label'><h6>Country:</h6></label>
+                                    <label className='meta-tag-label'><h6 className='qr-name'>Country:</h6></label>
                                     <input
                                       name="country"
-                                      className='selected-input'
+                                      className='selected-input qr-name'
                                       style={{ width: "90%" }}
                                       type="text"
                                       placeholder="Enter country"
@@ -1061,10 +1059,10 @@ const Dashboard = () => {
                                     />
                                   </div>
                                   <div className='col-4'>
-                                    <label className='meta-tag-label'><h6>Region:</h6></label>
+                                    <label className='meta-tag-label'><h6 className='qr-name'>Region:</h6></label>
                                     <input
                                       name="region"
-                                      className='selected-input'
+                                      className='selected-input qr-name'
                                       style={{ width: "90%" }}
                                       type="text"
                                       placeholder="Enter region"
@@ -1073,10 +1071,10 @@ const Dashboard = () => {
                                     />
                                   </div>
                                   <div className='col-4'>
-                                    <label className='meta-tag-label'><h6>City:</h6></label>
+                                    <label className='meta-tag-label'><h6 className='qr-name'>City:</h6></label>
                                     <input
                                       name="city"
-                                      className='selected-input'
+                                      className='selected-input qr-name'
                                       style={{ width: "90%" }}
                                       type="text"
                                       placeholder="Enter city"
@@ -1111,7 +1109,7 @@ const Dashboard = () => {
             <CCol xs={12}>
               <CCard>
                 <CCardBody>
-                  <h4 className="mb-4">Recent Links</h4>
+                  <h6 className="mb-4">Recent Links</h6>
                   <div>
                     <select
                       className="px-3 py-2 border rounded-md bg-white"
@@ -1133,11 +1131,11 @@ const Dashboard = () => {
               {showModal && (
                 <CModal visible={showModal} onClose={handleCancel}>
                   <CModalHeader closeButton>
-                    <h3 className="text-lg font-medium">
+                    <h6 className="text-lg font-medium">
                       {modalType === 'archive' && 'Add to Archive'}
                       {modalType === 'channel' && 'Add to Channel'}
                       {modalType === 'pixels' && 'Add Pixels'}
-                    </h3>
+                    </h6>
                   </CModalHeader>
                   <CModalBody>
                     {modalType === 'archive' && (
@@ -1152,8 +1150,8 @@ const Dashboard = () => {
                     )}
                     {modalType === 'channel' && (
                       <div className="mb-4">
-                        <label className="d-block text-sm font-medium text-gray-700 mb-1">Channels</label>
-                        <select style={{ width: '100%' }} className="w-full px-3 py-2 border rounded-md bg-white" defaultValue="none">
+                        <label className="d-block text-sm font-medium text-gray-700 mb-1 qr-name">Channels</label>
+                        <select style={{ width: '100%' }} className="w-full px-3 py-2 border rounded-md bg-white qr-name" defaultValue="none">
                           <option value="none">None</option>
                           <option value="channel1">Channel 1</option>
                           <option value="channel2">Channel 2</option>
@@ -1163,7 +1161,7 @@ const Dashboard = () => {
                     {modalType === 'pixels' && (
                       <div className="mb-4">
                         <label className="d-block text-sm font-medium text-gray-700 mb-1">Pixels</label>
-                        <select style={{ width: '100%' }} className="w-full px-3 py-2 border rounded-md bg-white" defaultValue="none">
+                        <select style={{ width: '100%' }} className="w-full px-3 py-2 border rounded-md bg-white qr-name" defaultValue="none">
                           <option value="none">None</option>
                           <option value="pixel1">Pixel 1</option>
                           <option value="pixel2">Pixel 2</option>
@@ -1171,13 +1169,12 @@ const Dashboard = () => {
                       </div>
                     )}
                   </CModalBody>
-                  <CModalFooter>
-                    <CButton color="secondary" onClick={handleCancel}>Cancel</CButton>
-                    <CButton color="success" onClick={handleAdd}>Add</CButton>
+                  <CModalFooter className='qr-name'>
+                    <CButton color="secondary" className='qr-name' onClick={handleCancel}>Cancel</CButton>
+                    <CButton color="success" className='qr-name text-white' onClick={handleAdd}>Add</CButton>
                   </CModalFooter>
                 </CModal>
               )}
-
             </CCol>
 
           </CRow>
@@ -1186,7 +1183,7 @@ const Dashboard = () => {
           <div className="p-4 dashboard-2nd-box">
             <div className="d-flex justify-content-between items-center mb-4">
               <h4 className="text-xl font-semibold">Recent Activity</h4>
-                <MoreVertical className="w-5 h-5" />
+              <MoreVertical className="w-5 h-5" />
             </div>
 
             <div className="space-y-4">
@@ -1194,7 +1191,7 @@ const Dashboard = () => {
                 <div key={activity.id} className="bg-white rounded-lg shadow p-4 mb-3">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
-                   
+
                       <div className="d-flex items-center gap-2">
                         <span className="inline-flex items-center px-2.5 py-0.5 pagetype rounded-md text-xs font-medium bg-green-100 text-green-800">
                           {activity.pageType}

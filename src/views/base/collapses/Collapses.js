@@ -5,7 +5,7 @@ import { DocsExample } from 'src/components'
 const Collapses = () => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
-    <CRow>
+    <CCardBody>
       <CCardHeader className='mb-4'>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div className='qr-name'>
@@ -102,7 +102,7 @@ const Collapses = () => {
         </CModalFooter>
       </CModal>
 
-    </CRow>
+    </CCardBody>
   )
 }
 

@@ -58,12 +58,9 @@ const Accordion = () => {
 
         <h6 className='mt-4'>My Channels</h6>
 
-        {/* Modal for Create Channel */}
         <CModal visible={modalVisible} onClose={() => setModalVisible(false)} centered>
           <CModalHeader onClose={() => setModalVisible(false)} className='qr-name'>Create Channel</CModalHeader>
           <CModalBody className='p-3'>
-            {/* Add your form or other content here */}
-            {/* <p className='qr-name'>Enter channel details here...</p> */}
             <p className='qr-name m-1'><b>Name (required)</b></p>
             <input style={{ width: "100%" }} type='text' />
 
