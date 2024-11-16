@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -13,6 +13,14 @@ import {
   CNavLink,
   CNavItem,
   useColorModes,
+  CFormInput,
+  CButton,
+  CModal,
+  CModalHeader,
+  CModalTitle,
+  CModalBody,
+  CModalFooter,
+  CFormSelect
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import {
@@ -22,11 +30,13 @@ import {
   cilList,
   cilMenu,
   cilMoon,
+  cilSettings,
   cilSun,
 } from '@coreui/icons'
 
 import { AppBreadcrumb } from './index'
 import { AppHeaderDropdown } from './header/index'
+import { shortenUrl } from './Api'
 
 const AppHeader = () => {
   const headerRef = useRef()
@@ -42,6 +52,35 @@ const AppHeader = () => {
     })
   }, [])
 
+  const [visible, setVisible] = useState(false);
+  const [url, setUrl] = useState('');
+
+  const [showForm, setShowForm] = useState(false);
+  const handleSettingsClick = () => {
+    setShowForm(!showForm)
+  }
+
+  const [shortenedData, setShortenedData] = useState(null);
+  const [successVisible, setSuccessVisible] = useState(false);
+
+  const option = 1;
+
+  const handleShortenClick = async () => {
+    if (!url) {
+      console.error('URL field is empty');
+      return;
+    }
+    try {
+      const data = { longUrl: url, options: option };
+      const response = await shortenUrl(data);
+      setShortenedData(response);
+      setSuccessVisible(true);
+    } catch (error) {
+      console.error('Failed to shorten URL:', error);
+    }
+  };
+
+
   return (
     <CHeader position="sticky" className="mb-4 p-0" ref={headerRef}>
       <CContainer className="border-bottom px-4" fluid>
@@ -52,17 +91,98 @@ const AppHeader = () => {
           <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
         <CHeaderNav className="d-none d-md-flex">
-          <CNavItem>
-            <CNavLink to="/dashboard" as={NavLink}>
-              Dashboard
-            </CNavLink>
-          </CNavItem>
-          <CNavItem>
-            <CNavLink href="#">Users</CNavLink>
-          </CNavItem>
-          <CNavItem>
-            <CNavLink href="#">Settings</CNavLink>
-          </CNavItem>
+
+          <CFormInput
+            placeholder="Quick Shortener"
+            className="qr-name"
+            style={{ borderRadius: '50px', cursor: 'pointer' }}
+            onClick={() => setVisible(true)}
+            readOnly
+          />
+
+          {/* Modal for Quick Shortener */}
+          <CModal visible={visible} onClose={() => setVisible(false)} className='qr-name'>
+            <CModalHeader closeButton className='qr-name'>
+              <CModalTitle style={{ fontSize: '15px' }}>Quick Shortener</CModalTitle>
+            </CModalHeader>
+            <CModalBody>
+              <div className='d-flex'>
+                <div className='col-9'>
+                  <CFormInput
+                    placeholder="Paste a long link"
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
+                    className='qr-name mb-4'
+                  />
+                </div>
+                <div className='col-1'>
+                  <CButton onClick={() => setShowForm(!showForm)} className="d-flex align-items-center p-2 qr-name">
+                    <CIcon icon={cilSettings} size="lg" className='qr-name' />
+                  </CButton>
+                </div>
+                <div className='col-2'>
+                  <CButton color="primary" onClick={handleShortenClick} className='qr-name'>
+                    Shorten
+                  </CButton>
+                </div>
+              </div>
+
+              {showForm && (
+                <div className='col-12 d-flex' style={{ flexWrap: 'wrap' }}>
+                  <div className='col-6 qr-name mb-3'>
+                    Domain
+                    <CFormSelect className='mt-1 qr-name' style={{ width: '95%' }}>
+                      <option>https://demo.gempixel.com/short</option>
+                    </CFormSelect>
+                  </div>
+                  <div className='col-6 qr-name mb-3'>
+                    Redirect<br></br>
+                    <CFormSelect className='mt-1 qr-name' style={{ width: '95%' }}>
+                      <option>Redirection</option>
+                      <option>Direct</option>
+                      <option>Frame</option>
+                      <option>Splash</option>
+                    </CFormSelect>
+                  </div>
+                  <div className='col-6 qr-name mb-3'>
+                    Custom
+                    <p className='text-muted mt-1' style={{ fontSize: '10px' }}>If you need a custom alias, you can enter it below.</p>
+                    <CFormInput className='qr-name' placeholder='Type your custom alias here' style={{ width: '95%' }} />
+                  </div>
+                  <div className='col-6 qr-name mb-3'>
+                    Channel
+                    <p className='text-muted mt-1' style={{ fontSize: '10px' }}>Assign link to a channel.</p>
+                    <CFormSelect className='qr-name' style={{ width: '95%' }}>
+                      <option>None</option>
+                    </CFormSelect>
+                  </div>
+                  <div className='col-6 qr-name mb-3'>
+                    Password Protection
+                    <p className='text-muted mt-1' style={{ fontSize: '10px' }}>By adding a password, you can restrict the access.</p>
+                    <CFormInput className='qr-name' placeholder='Type your password here' style={{ width: '95%' }} />
+                  </div>
+                  <div className='col-6 qr-name mb-3'>
+                    Description
+                    <p className='text-muted mt-1' style={{ fontSize: '10px' }}>This can be used to identify URLs on your account.</p>
+                    <CFormInput className='qr-name' placeholder='Type your description here' style={{ width: '95%' }} />
+                  </div>
+                </div>
+              )}
+
+              {shortenedData && (
+                <CModal visible={successVisible} onClose={() => setSuccessVisible(false)} className='qr-name'>
+                  <CModalHeader closeButton className='qr-name'>
+                    <CModalTitle>Shortened URL</CModalTitle>
+                  </CModalHeader>
+                  <CModalBody>
+                    <p>Shortened Link: <a href={shortenedData.shortUrl}>{shortenedData.shortUrl}</a></p>
+                    <img src={shortenedData.qrCodeUrl} alt="QR Code" />
+                  </CModalBody>
+                </CModal>
+              )}
+            </CModalBody>
+          </CModal>
+
         </CHeaderNav>
         <CHeaderNav className="ms-auto">
           <CNavItem>
@@ -131,10 +251,8 @@ const AppHeader = () => {
           <AppHeaderDropdown />
         </CHeaderNav>
       </CContainer>
-      {/* <CContainer className="px-4" fluid>
-        <AppBreadcrumb />
-      </CContainer> */}
-    </CHeader>
+
+    </CHeader >
   )
 }
 

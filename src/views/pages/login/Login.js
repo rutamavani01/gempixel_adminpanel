@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { loginUser } from '../../../components/Api';
 import {
   CButton,
   CCard,
@@ -12,11 +12,26 @@ import {
   CInputGroup,
   CInputGroupText,
   CRow,
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cilLockLocked, cilUser } from '@coreui/icons'
+} from '@coreui/react';
+import CIcon from '@coreui/icons-react';
+import { cilLockLocked, cilUser } from '@coreui/icons';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const navigate = useNavigate()
+
+  const handleLogin = async () => {
+    const result = await loginUser(username, password);
+    if (result.success) {
+      navigate('/dashboard')
+    } else {
+      alert('Login failed. Please check your credentials.');
+    }
+  };
+
   return (
     <div className="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -32,7 +47,12 @@ const Login = () => {
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
-                      <CFormInput placeholder="Username" autoComplete="username" />
+                      <CFormInput
+                        placeholder="Username"
+                        autoComplete="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                      />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
@@ -42,11 +62,13 @@ const Login = () => {
                         type="password"
                         placeholder="Password"
                         autoComplete="current-password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-                        <CButton className="px-4 login-btn">
+                        <CButton className="px-4 login-btn" onClick={handleLogin}>
                           Login
                         </CButton>
                       </CCol>
@@ -63,14 +85,10 @@ const Login = () => {
                 <CCardBody className="text-center">
                   <div>
                     <h4>Don't have an account?</h4>
-                    <p>
-                      Start your marketing campaign now and reach your customers efficiently.
-                    </p>
-                    <Link to="/register">
-                      <CButton className="mt-3 register-btn" active tabIndex={-1}>
-                        Register Now!
-                      </CButton>
-                    </Link>
+                    <p>Start your marketing campaign now and reach your customers efficiently.</p>
+                    <CButton className="mt-3 register-btn" active tabIndex={-1} onClick={() => window.location.href = '/register'}>
+                      Register Now!
+                    </CButton>
                   </div>
                 </CCardBody>
               </CCard>
@@ -79,7 +97,7 @@ const Login = () => {
         </CRow>
       </CContainer>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

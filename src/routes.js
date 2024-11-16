@@ -22,8 +22,10 @@ const EditCtaContact = React.lazy(() => import('./views/base/CtaContact/EditCtaC
 const CtaCoupon = React.lazy(() => import('./views/base/CtaCoupon/CtaCoupon'))
 const CtaImage = React.lazy(() => import('./views/base/CtaImage/CtaImage'))
 const CtaMessage = React.lazy(() => import('./views/base/CtaMessage/CtaMessage'))
+const EditCtaMessage = React.lazy(() => import('./views/base/CtaMessage/EditctaMessage'))
 const CtaNewsletter = React.lazy(() => import('./views/base/CtaNewsletter/CtaNewsletter'))
 const CtaPoll = React.lazy(() => import('./views/base/CtaPoll/CtaPoll'))
+const EditctaPoll = React.lazy(() => import('./views/base/CtaPoll/EditctaPoll'))
 
 
 const Paginations = React.lazy(() => import('./views/base/paginations/Paginations'))
@@ -66,7 +68,7 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 const routes = [
-  { path: '/', exact: true, name: 'Home' },
+  { path: '/home', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
@@ -80,7 +82,7 @@ const routes = [
   { path: '/base/collapses', name: 'Collapse', element: Collapses },
   { path: '/base/list-groups', name: 'List Groups', element: ListGroups },
   { path: '/base/Customesplash', name: 'Custom Splash', element: Customesplash },
-  
+
   { path: '/base/navs', name: 'Navs', element: Navs },
 
   { path: '/base/OverlayCreate', name: 'OverlayCreate', element: OverlayCreate },
@@ -90,8 +92,10 @@ const routes = [
   { path: '/base/CtaCoupon', name: 'CtaCoupon', element: CtaCoupon },
   { path: '/base/CtaImage', name: 'CtaImage', element: CtaImage },
   { path: '/base/CtaMessage', name: 'CtaMessage', element: CtaMessage },
+  { path: '/base/EditCtaMessage', name: 'EditCtaMessage', element: EditCtaMessage },
   { path: '/base/CtaNewsletter', name: 'CtaNewsletter', element: CtaNewsletter },
   { path: '/base/CtaPoll', name: 'CtaPoll', element: CtaPoll },
+  { path: '/base/EditctaPoll', name: 'EditctaPoll', element: EditctaPoll },
 
 
   { path: '/base/paginations', name: 'Paginations', element: Paginations },

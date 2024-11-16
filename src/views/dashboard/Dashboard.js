@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import { useState } from 'react';
-import { X, Globe, User, MoreVertical } from 'lucide-react';
+import { X, Globe, User, MoreVertical, MoreHorizontal } from 'lucide-react';
 import {
   CAvatar,
   CButton,
@@ -32,6 +32,8 @@ import {
   CDropdown,
   CDropdownMenu, CDropdownToggle,
   CDropdownItem, CModal, CModalBody, CModalFooter, CModalHeader,
+  CFormTextarea,
+  CModalContent,
 
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react';
@@ -65,7 +67,9 @@ import {
   cilBorderAll,
   cilWatch,
   cilAsterisk,
-  cilOptions
+  cilOptions,
+  cilFace,
+  cibSkype
 } from '@coreui/icons'
 
 import avatar1 from 'src/assets/images/avatars/1.jpg'
@@ -74,10 +78,8 @@ import avatar3 from 'src/assets/images/avatars/3.jpg'
 import avatar4 from 'src/assets/images/avatars/4.jpg'
 import avatar5 from 'src/assets/images/avatars/5.jpg'
 import avatar6 from 'src/assets/images/avatars/6.jpg'
-
-import WidgetsBrand from '../widgets/WidgetsBrand'
-import WidgetsDropdown from '../widgets/WidgetsDropdown'
 import MainChart from './MainChart'
+import { fetchQRCodeData } from '../../components/Api';
 
 const Dashboard = () => {
   const progressExample = [
@@ -291,8 +293,6 @@ const Dashboard = () => {
     setShowDeepLinkingForm(!showDeepLinkingForm);
   };
 
-
-  // device target
   const [deviceRows, setDeviceRows] = useState([{ deviceType: '', os: '', browser: '' }]);
 
   const handleAddDeviceRow = () => {
@@ -346,10 +346,9 @@ const Dashboard = () => {
   };
 
 
-  // Archive selected
   const [showModal, setShowModal] = useState(false);
   const [selectedAction, setSelectedAction] = useState('');
-  const [modalType, setModalType] = useState(''); // To handle different modals
+  const [modalType, setModalType] = useState('');
 
   const handleActionChange = (e) => {
     const value = e.target.value;
@@ -381,53 +380,107 @@ const Dashboard = () => {
   const activities = [
     {
       id: 1,
-      pageName: "Sample Demo Page",
+      pageName: " Demo Page",
       url: "https://demo.gempixel.com/short/demo",
       location: "Santa Clara, United States",
       os: "Mac OS X",
       browser: "Edge",
       type: "Direct, email or others",
-      timeAgo: "5 minutes ago",
+      timeAgo: "5 hours ago",
       language: "EN",
       pageType: "Bio Page"
     },
     {
       id: 2,
-      pageName: "Sample Demo Page",
+      pageName: " Demo Page",
       url: "https://demo.gempixel.com/short/demo",
       location: "Nuremberg, Germany",
       os: "Linux",
       browser: "Firefox",
       type: "Direct, email or others",
-      timeAgo: "12 minutes ago",
+      timeAgo: "12 hours ago",
       language: "EN",
       pageType: "Bio Page"
     },
     {
       id: 3,
-      pageName: "Sample Demo Page",
+      pageName: " Demo Page",
       url: "https://demo.gempixel.com/short/demo",
       location: "Santa Clara, United States",
       os: "Mac OS X",
       browser: "Edge",
       type: "Direct, email or others",
-      timeAgo: "5 minutes ago",
+      timeAgo: "5 hours ago",
       language: "EN",
       pageType: "Bio Page"
     },
     {
       id: 4,
-      pageName: "Sample Demo Page",
+      pageName: " Demo Page",
       url: "https://demo.gempixel.com/short/demo",
       location: "Nuremberg, Germany",
       os: "Linux",
       browser: "Firefox",
       type: "Direct, email or others",
-      timeAgo: "12 minutes ago",
+      timeAgo: "12 hours ago",
       language: "EN",
       pageType: "Bio Page"
     }
   ];
+
+  const [activeButton, setActiveButton] = useState('single');
+  const [urls, setUrls] = useState('');
+
+  const [urlShowModal, setUrlShowModal] = useState(false);
+  const [shortLink, setShortLink] = useState('');
+
+  const handleShortenClick = async () => {
+    ;
+
+    const option = activeButton === 'single' ? 1 : 2;
+    console.log('Option (1 for single, 2 for multiple):', option);
+
+    const authToken = localStorage.getItem('authToken');
+    const urlsToSend = activeButton === 'single' ? urls : urls.split('\n').map(url => url.trim());
+
+    try {
+      const response = await fetch('http://192.168.1.9:8000/dashboard', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`,
+        },
+        body: JSON.stringify({
+          longurl: urlsToSend,
+          options: option,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success && data.Data) {
+        const linkData = Array.isArray(data.Data) ? data.Data[0] : data.Data;
+        setShortLink(linkData.shorturl);
+        setQrCodeUrl(linkData.qrCode);
+        setUrlShowModal(true);
+      } else {
+        console.error('API Error:', data.message || 'Unexpected response format');
+      }
+
+    } catch (error) {
+      console.error('Error:', error);
+    }
+
+  };
+
+  const handleClose = () => setUrlShowModal(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(shortLink);
+    alert("Link copied to clipboard!");
+  };
+
+  const [qrCodeUrl, setQrCodeUrl] = useState('');
 
   return (
     <>
@@ -462,37 +515,110 @@ const Dashboard = () => {
       </div>
 
       <div className='col-12 d-flex justify-content-between qr-name'>
-        <div className='col-6 '>
+        <div className='col-7 '>
           <CRow style={{ width: '99%' }}>
             <CCol xs={12} className=' qr-name'>
               <CCard className="mb-4">
                 <CCardBody className=' qr-name'>
-                  <div className="d-flex align-items-center gap-2 mb-3 qr-name">
-                    <CFormInput
-                      type="url"
-                      placeholder="Paste a long link"
-                      className="flex-grow-1  qr-name"
-                    />
+
+                  <div className="d-flex align-items-center gap-2 mb-3 qr-name dash-input">
+                    {activeButton === 'single' ? (
+                      <CFormInput
+                        type="url"
+                        placeholder="Paste a long link"
+                        value={urls}
+                        onChange={(e) => setUrls(e.target.value)}
+                        className="flex-1 qr-name border-0"
+                      />
+                    ) : (
+                      <CFormTextarea
+                        placeholder="Enter multiple URLs (one per line)"
+                        value={urls}
+                        onChange={(e) => setUrls(e.target.value)}
+                        className="flex-1 min-h-[100px] border-0  qr-name"
+                      />
+                    )}
                     <CButton
-                      color="light"
+                      // color="light"
                       onClick={handleSettingsClick}
                       className="d-flex align-items-center p-2  qr-name"
+                      style={{ borderRadius: '0px', padding: '2px' }}
                     >
                       <CIcon icon={cilSettings} size="lg" />
                     </CButton>
-                    <CButton color="primary" className=' qr-name'>
+                    <CButton
+                      style={{ backgroundColor: '#3b7ddd', color: 'white', padding: '4px 5px', borderRadius: '0px' }}
+                      onClick={handleShortenClick}
+                    >
                       Shorten
                     </CButton>
                   </div>
 
-                  <div className="d-flex justify-content-end gap-2 mb-3  qr-name">
-                    <CButton color="light" variant="" className=' qr-name'>
-                      Single
-                    </CButton>
-                    <CButton color="light" variant="" className=' qr-name'>
-                      Multiple
-                    </CButton>
+                  <CModal visible={urlShowModal} onClose={() => setUrlShowModal(false)}>
+                    <CModalHeader className='p-2'>
+                      <p className='m-1'>Short Link</p>
+                    </CModalHeader>
+                    <div className="p-2 d-flex justify-content-start align-items-center">
+                      <div className="col-4 bg-white ">
+                        <img
+                          id="qrCodeImage"
+                          src={qrCodeUrl}
+                          alt="QR Code"
+                          className="w-100"
+                        />
+                        <a href={qrCodeUrl} download="QRCode.png" className='qr-name ms-3'>
+                          <button className="url-btn border-0 qr-name">Download</button>
+                        </a>
+                      </div>
+                      <div className="col-8 flex-grow">
+                        <p className='qr-name'><b>Short Link</b></p>
+                        <div className="d-flex align-items-center justify-content-center" style={{ width: '100%' }}>
+                          <CFormInput
+                            type="text"
+                            value={shortLink}
+                            readOnly
+                            className="me-2 qr-name"
+                            style={{ width: '100%' }}
+                          />
+                          <CButton color="primary" className="url-btn border-0 qr-name" onClick={() => navigator.clipboard.writeText(shortLink)}>
+                            Copy
+                          </CButton>
+                        </div>
+                      </div>
+                    </div>
+                  </CModal>
+
+                  <div className='d-flex justify-content-end'>
+                    <CButtonGroup role="group" className="custom-toggle-buttons qr-name">
+                      <CButton
+                        style={{
+                          fontSize: '13px',
+                          padding: '2px 4px',
+                          backgroundColor: activeButton === 'single' ? '#8b8e8d' : '#eaeaea',
+                          color: activeButton === 'single' ? '#ffffff' : '#000000',
+                          borderRadius: '0px'          
+                        }}
+                        onClick={() => setActiveButton('single')}
+                      >
+                        Single
+                      </CButton>
+                      <CButton
+                        style={{
+                          fontSize: '13px',
+                          padding: '2px 4px',
+                          backgroundColor: activeButton === 'multiple' ? '#8b8e8d' : '#eaeaea',
+                          color: activeButton === 'multiple' ? '#ffffff' : '#000000',
+                          borderRadius: '0px'
+                        }}
+                        onClick={() => setActiveButton('multiple')}
+                      >
+                        Multiple
+                      </CButton>
+                    </CButtonGroup>
+
                   </div>
+
+                  <p></p>
 
                   {showForm && (
                     <div className="mt-4 p-4 border rounded bg-light  qr-name">
@@ -1179,39 +1305,44 @@ const Dashboard = () => {
 
           </CRow>
         </div>
-        <div className='col-6'>
-          <div className="p-4 dashboard-2nd-box">
-            <div className="d-flex justify-content-between items-center mb-4">
-              <h4 className="text-xl font-semibold">Recent Activity</h4>
-              <MoreVertical className="w-5 h-5" />
+        <div className='col-5'>
+          <div className="p-1 pt-2 dashboard-2nd-box">
+            <div className="d-flex justify-content-between items-center mb-2">
+              <h6 className="text-xl font-semibold">Recent Activity</h6>
+              <MoreHorizontal className="w-1 h-1" style={{ width: '15px' }} />
             </div>
 
-            <div className="space-y-4">
+            <div className="p-1">
               {activities.map(activity => (
-                <div key={activity.id} className="bg-white rounded-lg shadow p-4 mb-3">
+                <div key={activity.id} className="bg-white rounded-lg shadow p-3 mb-3">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
 
-                      <div className="d-flex items-center gap-2">
-                        <span className="inline-flex items-center px-2.5 py-0.5 pagetype rounded-md text-xs font-medium bg-green-100 text-green-800">
-                          {activity.pageType}
-                        </span>
-                        <span className="font-medium text-gray-900">{activity.pageName}</span>
+                      <div className="d-flex align-items-center justify-content-between gap-2">
+                        <div>
+                          <span className="inline-flex items-center pagetype rounded-md  bg-green-100 text-green-800" style={{ fontSize: '12px' }}>
+                            {activity.pageType}
+                          </span>
+                          <span className="font-medium text-gray-900 d-inline" style={{ fontSize: '12px' }}>{activity.pageName}</span>
+                          <a href={activity.url} style={{ fontSize: '10px' }} className="ms-2 text-blue-600 text-sm d-inline dashboard-box2-a hover:underline block ">
+                            {activity.url}
+                          </a>
+                        </div>
+                        <div>
+                          <span className="text-sm text-gray-500 whitespace-nowrap">
+                            {activity.timeAgo}
+                          </span>
+                        </div>
                       </div>
-
-                      {/* URL */}
-                      <a href={activity.url} className="text-blue-600 text-sm dashboard-box2-a hover:underline block ">
-                        {activity.url}
-                      </a>
 
                       {/* Details Row */}
                       <div className="d-flex flex-wrap detail-row items-center gap-2 text-sm text-gray-600">
                         {/* Location with Flag */}
                         <div className="d-flex items-center gap-1">
                           {activity.location.includes("United States") ? (
-                            <span className="text-lg">🇺🇸</span>
+                            <span className="text-sm">🇺🇸</span>
                           ) : (
-                            <span className="text-lg">🇩🇪</span>
+                            <span className="text-sm">🇩🇪</span>
                           )}
                           <span>{activity.location}</span>
                         </div>
@@ -1219,9 +1350,9 @@ const Dashboard = () => {
                         {/* OS Icon */}
                         <div className="d-flex items-center gap-1">
                           {activity.os === "Mac OS X" ? (
-                            <span className="text-lg">🍎</span>
+                            <span className="text-sm">🍎</span>
                           ) : (
-                            <span className="text-lg">🐧</span>
+                            <span className="text-sm">🐧</span>
                           )}
                           <span>{activity.os}</span>
                         </div>
@@ -1229,31 +1360,29 @@ const Dashboard = () => {
                         {/* Browser Icon */}
                         <div className="d-flex items-center gap-1">
                           {activity.browser === "Edge" ? (
-                            <span className="text-lg">🌐</span>
+                            <span className="text-sm">🌐</span>
                           ) : (
-                            <span className="text-lg">🦊</span>
+                            <span className="text-sm">🦊</span>
                           )}
-                          <span>{activity.browser}</span>
+                          <span >{activity.browser}</span>
                         </div>
 
                         {/* Access Type */}
                         <div className="d-flex items-center gap-1">
-                          <Globe className="w-2 h-2" />
+                          {/* <Globe className="w-2 h-2"  style={{width:'15%'}}/> */}
                           <span>{activity.type}</span>
                         </div>
 
                         {/* Language */}
                         <div className="d-flex items-center gap-1">
-                          <User className="w-4 h-4" />
-                          <span>{activity.language}</span>
+                          <User className="w-2 h-2" style={{ width: '45%' }} />
+                          <span >{activity.language}</span>
                         </div>
                       </div>
                     </div>
 
                     {/* Time */}
-                    <span className="text-sm text-gray-500 whitespace-nowrap">
-                      {activity.timeAgo}
-                    </span>
+
 
                   </div>
                 </div>
@@ -1261,7 +1390,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div >
 
     </>
   )

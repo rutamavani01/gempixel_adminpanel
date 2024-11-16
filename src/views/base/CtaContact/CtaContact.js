@@ -1,4 +1,4 @@
-import { cilCircle, cilDoubleQuoteSansLeft, cilDoubleQuoteSansRight, cilPlus } from '@coreui/icons';
+import { cilPlus } from '@coreui/icons';
 import CIcon from '@coreui/icons-react';
 import { CButton, CCard, CCardBody, CCol, CCollapse, CForm, CFormInput, CFormTextarea, CRow } from '@coreui/react'
 import React, { useState } from 'react';
@@ -14,7 +14,6 @@ const CtaContact = () => {
         { value: 'bottom-left', label: 'Bottom Left' },
         { value: 'bottom-right', label: 'Bottom Right' },
     ];
-
 
     const [selectedOption, setSelectedOption] = useState(null);
     const handleChange = (option) => setSelectedOption(option);
@@ -409,7 +408,7 @@ const CtaContact = () => {
                         </div>
                     </CCard>
 
-                </div>
+                </div> 
 
             </div>
         </CCardBody>

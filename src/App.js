@@ -1,7 +1,8 @@
 import React, { Suspense, useEffect } from 'react'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-
+  
+import { Navigate } from 'react-router-dom';
 import { CSpinner, useColorModes } from '@coreui/react'
 import './scss/style.scss'
 
@@ -30,8 +31,9 @@ const App = () => {
     }
 
     setColorMode(storedTheme)
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, []) 
 
+  
   return (
     <HashRouter>
       <Suspense
@@ -42,7 +44,7 @@ const App = () => {
         }
       >
         <Routes>
-          <Route exact path="/login" name="Login Page" element={<Login />} />
+          <Route exact path="/" name="Login Page" element={<Login />} />
           <Route exact path="/register" name="Register Page" element={<Register />} />
           <Route exact path="/404" name="Page 404" element={<Page404 />} />
           <Route exact path="/500" name="Page 500" element={<Page500 />} />

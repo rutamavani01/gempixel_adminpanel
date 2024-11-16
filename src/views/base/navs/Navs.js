@@ -1,85 +1,55 @@
-import React from 'react'
-import {
-  CBadge,
-  CCard,
-  CCardBody,
-  CCardHeader,
-  CCol,
-  CFormCheck,
-  CListGroup,
-  CListGroupItem,
-  CRow, CButton
-} from '@coreui/react'
-import { DocsExample } from 'src/components'
-import CIcon from '@coreui/icons-react'
-import { cilSearch } from '@coreui/icons'
-import { useNavigate } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-// import { FaEllipsisV, FaEdit, FaTrashAlt } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { CBadge, CCard, CCardBody, CCardHeader, CCol, CRow, CButton } from '@coreui/react';
+import CIcon from '@coreui/icons-react';
+import { cilSearch } from '@coreui/icons';
+import { useNavigate } from 'react-router-dom';
 
 const Navs = () => {
   const navigate = useNavigate();
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [dropdowns, setDropdowns] = useState({});
 
-  const handleClick = () => {
-    setShowDropdown(!showDropdown);
+  const handleToggleDropdown = (cardId) => {
+    setDropdowns((prev) => ({
+      ...prev,
+      [cardId]: !prev[cardId],
+    }));
+  };
+
+  const handleOutsideClick = (event) => {
+    if (!event.target.closest('.card')) {
+      setDropdowns({});
+    }
   };
 
   useEffect(() => {
-    const handleOutsideClick = (event) => {
-      if (!event.target.closest('.card')) {
-        setShowDropdown(false);
-      }
-    };
-
-    if (showDropdown) {
-      document.addEventListener('click', handleOutsideClick);
-    } else {
-      document.removeEventListener('click', handleOutsideClick);
-    }
-
+    document.addEventListener('click', handleOutsideClick);
     return () => {
       document.removeEventListener('click', handleOutsideClick);
     };
-  }, [showDropdown]);
+  }, []);
 
-  const handleEditClick = () => {
-    navigate('/base/EditCtaContact');
+  const handleEditClick = (path) => {
+    navigate(path);
   };
 
   return (
     <div>
       <CCardBody>
-        <CCardHeader className='mb-4'>
+        <CCardHeader className="mb-4">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div className='qr-name'>
-              <h5>CTA Overlay </h5>
+            <div className="qr-name">
+              <h5>CTA Overlay</h5>
             </div>
-            <div className='qr-name'>
-              <CButton
-                className='qr-name'
-                color="primary"
-                style={{ marginRight: '10px' }}
-              // onClick={() => setModalVisible(true)}
-              >
+            <div className="qr-name">
+              <CButton className="qr-name" color="primary" style={{ marginRight: '10px' }} onClick={() => {
+                navigate('/base/OverlayCreate')
+              }}>
                 Create
               </CButton>
             </div>
           </div>
         </CCardHeader>
 
-        <CCard className=' p-2  mb-3'>
-          <CRow className=' row justify-content-between align-items-center p-0'>
-            <CCol sm='9' className='qr-name'>
-              <h5 className='d-inline'> 0 </h5>Custom Splash Pages / Unlimited
-            </CCol>
-            <CCol sm='2'>
-              <div className='input-box text-start'>
-                <input type='text' className='qr-name d-inline me-1 border-0 focus-ring ' placeholder='Search for Custome Splas' /><CIcon className='d-inline' width={'7%'} icon={cilSearch} size='sm-2' customClassName="nav-icon text-end" />
-              </div>
-            </CCol>
-          </CRow>
-        </CCard>
 
         <CCard>
           <CCardBody>
@@ -97,59 +67,112 @@ const Navs = () => {
         </CCard>
 
         <CCardBody>
-          <div className='d-flex' style={{ gap: '20px' }}>
-            <div className='card col-6 mt-4 p-2' style={{ position: 'relative', border: '1px solid #ddd', borderRadius: '5px' }}>
-              <div className='d-flex justify-content-between align-items-center'>
-                <div className='d-flex justify-content-between align-items-center'>
-                  <div>
-                    <CIcon icon={cilSearch} className='me-2' height={40} width={40} />
-                  </div>
-                  <div>
-                    <h6>ruta</h6>
-                    <button className='contact-btn'>Contact</button>
-                    <span className='qr-name' style={{ marginLeft: '10px', color: '#888' }}>34 seconds ago</span>
-                  </div>
-                </div>
-                <div onClick={handleClick} style={{ cursor: 'pointer', padding: '5px' }}>
-                  ...
-                </div>
-              </div>
-              {showDropdown && (
-                <div
-                  className='dropdown-menu-custom'
-                  style={{
-                    position: 'absolute',
-                    top: '50px',
-                    right: '1px',
-                    backgroundColor: '#fff',
-                    border: '1px solid #ccc',
-                    borderRadius: '5px',
-                    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
-                    width: '150px',
-                    zIndex: 1000,
-                  }}
-                >
-                  <div
-                    className='dropdown-item'
-                    style={{ padding: '10px', display: 'flex', alignItems: 'center', cursor: 'pointer' }}
-                    onClick={handleEditClick}
-                  >
-                     Edit
-                  </div>
-                  <div className='dropdown-item' style={{ padding: '10px', display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-                    Delete
-                  </div>
-                </div>
-              )}
-            </div>
+          <div className="d-flex col-12 " style={{ flexWrap: 'wrap' }}>
+            {/* Contact Card */}
+            <CardWithDropdown
+              title="Contact"
+              dropdownId="contact"
+              dropdowns={dropdowns}
+              handleToggleDropdown={handleToggleDropdown}
+              handleEditClick={() => handleEditClick('/base/EditCtaContact')}
+            />
 
+            {/* Poll Card */}
+            <CardWithDropdown
+              title="Poll"
+              dropdownId="poll"
+              dropdowns={dropdowns}
+              handleToggleDropdown={handleToggleDropdown}
+              handleEditClick={() => handleEditClick('/base/EditctaPoll')}
+            />
 
+            {/* Message Card */}
+            <CardWithDropdown
+              title="Message"
+              dropdownId="message"
+              dropdowns={dropdowns}
+              handleToggleDropdown={handleToggleDropdown}
+              handleEditClick={() => handleEditClick('/base/EditctaMessage')}
+            />
+
+            {/* Newsletter Card */}
+            <CardWithDropdown
+              title="Newsletter"
+              dropdownId="newsletter"
+              dropdowns={dropdowns}
+              handleToggleDropdown={handleToggleDropdown}
+              handleEditClick={() => handleEditClick('/base/EditctaNewsletter')}
+            />
+
+            {/* Image Card */}
+            <CardWithDropdown
+              title="Image"
+              dropdownId="image"
+              dropdowns={dropdowns}
+              handleToggleDropdown={handleToggleDropdown}
+              handleEditClick={() => handleEditClick('/base/EditctaImage')}
+            />
+
+            {/* Coupon Card */}
+            <CardWithDropdown
+              title="Coupon"
+              dropdownId="coupon"
+              dropdowns={dropdowns}
+              handleToggleDropdown={handleToggleDropdown}
+              handleEditClick={() => handleEditClick('/base/EditctaCoupon')}
+            />
           </div>
         </CCardBody>
-
       </CCardBody>
     </div>
-  )
-}
+  );
+};
 
-export default Navs
+const CardWithDropdown = ({ title, dropdownId, dropdowns, handleToggleDropdown, handleEditClick }) => (
+  <div className="d-flex col-6" style={{ gap: '10px' }}>
+    <CCard className="card mt-4 p-2" style={{ width: '98%', position: 'relative', border: '1px solid #ddd', borderRadius: '5px' }}>
+      <div className="d-flex justify-content-between align-items-center">
+        <div className="d-flex align-items-center">
+          <CIcon icon={cilSearch} className="me-2" height={40} width={40} />
+          <div>
+            <h6>ruta</h6>
+            <button className="contact-btn">{title}</button>
+            <span className="qr-name" style={{ marginLeft: '10px', color: '#888' }}>34 seconds ago</span>
+          </div>
+        </div>
+        <div onClick={() => handleToggleDropdown(dropdownId)} style={{ cursor: 'pointer', padding: '5px' }}>
+          ...
+        </div>
+      </div>
+      {dropdowns[dropdownId] && (
+        <div
+          className="dropdown-menu-custom"
+          style={{
+            position: 'absolute',
+            top: '50px',
+            right: '1px',
+            backgroundColor: '#fff',
+            border: '1px solid #ccc',
+            borderRadius: '5px',
+            boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+            width: '150px',
+            zIndex: 1000,
+          }}
+        >
+          <div
+            className="dropdown-item"
+            style={{ padding: '10px', display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+            onClick={handleEditClick}
+          >
+            Edit
+          </div>
+          <div className="dropdown-item" style={{ padding: '10px', display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+            Delete
+          </div>
+        </div>
+      )}
+    </CCard>
+  </div>
+);
+
+export default Navs;
