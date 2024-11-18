@@ -111,11 +111,8 @@ const AppHeader = () => {
     }
   };
 
-  // Call this function where needed, e.g., after success or when opening the dashboard view
-
-
   return (
-    <CHeader position="" className="mb-4 p-0" ref={headerRef}>
+    <CHeader  className="mb-4 p-0" ref={headerRef}>
       <CContainer className="border-bottom px-4" fluid>
         <CHeaderToggler
           onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
@@ -124,7 +121,6 @@ const AppHeader = () => {
           <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
         <CHeaderNav className="d-none d-md-flex">
-
           <CFormInput
             placeholder="Quick Shortener"
             className="qr-name"

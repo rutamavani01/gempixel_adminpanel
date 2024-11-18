@@ -1510,7 +1510,6 @@ const QrCode = () => {
               </CCardBody>
             </CCard>
           )}
-
         </div>
         <div className='col-5'>
           <CCard className='mb-3'>

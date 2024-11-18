@@ -261,7 +261,7 @@ const CtaPoll = () => {
 
             {formData.options.map((option, index) => (
               <div key={index} className="mb-2">
-                {option || `# ${index + 1}`} {/* Display option or placeholder */}
+                {option || `# ${index + 1}`} 
               </div>
             ))}
 
