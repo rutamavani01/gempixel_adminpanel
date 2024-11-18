@@ -49,22 +49,45 @@ export const shortenUrl = async (data, authToken) => {
     try {
         const response = await axios.post(
             'http://192.168.1.9:8000/dashboard',
-            data,
+            data, // Send the payload
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authToken}`
-                }
+                    'Authorization': `Bearer ${authToken}`, // Include the auth token
+                },
             }
         );
-        console.log(response.data); console.log('Auth Token:', authToken);
 
-        console.log(response.data.headers.Authorization);
+        console.log(response.data); // Log response data
+        console.log('Auth Token:', authToken); // Log the auth token
 
-        return response.data;
-
+        return response.data; // Return the response data
     } catch (error) {
-        console.error('Error shortening URL:', error.response?.data || error.message);
+        console.error(
+            'Error shortening URL:',
+            error.response?.data || error.message // Log detailed error info
+        );
+        throw error; // Rethrow the error for further handling
+    }
+};
+
+// url view
+export const fetchDashboardData = async (authToken) => {
+    try {
+        const response = await axios.get('http://192.168.1.9:8000/dashboard', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authToken}`, // Pass the auth token
+            },
+        });
+
+        console.log('Dashboard Data:', response.data);
+        return response.data; // Return fetched data
+    } catch (error) {
+        console.error('Error fetching dashboard data:', error.response?.data || error.message);
         throw error;
     }
 };
+
+// qrcode add
+ 

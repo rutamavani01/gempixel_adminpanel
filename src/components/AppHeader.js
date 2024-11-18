@@ -20,7 +20,8 @@ import {
   CModalTitle,
   CModalBody,
   CModalFooter,
-  CFormSelect
+  CFormSelect,
+  CCard
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import {
@@ -37,6 +38,7 @@ import {
 import { AppBreadcrumb } from './index'
 import { AppHeaderDropdown } from './header/index'
 import { shortenUrl } from './Api'
+import { fetchDashboardData } from './Api'
 
 const AppHeader = () => {
   const headerRef = useRef()
@@ -63,26 +65,57 @@ const AppHeader = () => {
   const [shortenedData, setShortenedData] = useState(null);
   const [successVisible, setSuccessVisible] = useState(false);
 
-  const option = 1;
-
   const handleShortenClick = async () => {
     if (!url) {
       console.error('URL field is empty');
       return;
     }
+
     try {
-      const data = { longUrl: url, options: option };
-      const response = await shortenUrl(data);
-      setShortenedData(response);
-      setSuccessVisible(true);
+      const authToken = localStorage.getItem('authToken'); // Retrieve token
+
+      if (!authToken) {
+        console.error('Authentication token is missing. Please log in.');
+        return;
+      }
+
+      const data = { longurl: url, options: 1 }; // Payload
+      const response = await shortenUrl(data, authToken); // API call
+
+      console.log('Shorten Response:', response); // Debug log
+      if (response && response.shortUrl && response.qrCodeUrl) {
+        setShortenedData(response); // Store response in state
+        setSuccessVisible(true); // Show modal
+      } else {
+        console.error('Unexpected response format:', response);
+      }
     } catch (error) {
-      console.error('Failed to shorten URL:', error);
+      console.error('Error occurred:', error.response?.data || error.message);
     }
   };
 
+  const [dashboardData, setDashboardData] = useState(null);
+
+  const fetchAndSetDashboardData = async () => {
+    try {
+      const authToken = localStorage.getItem('authToken');
+      if (!authToken) {
+        console.error('Authentication token is missing. Please log in.');
+        return;
+      }
+
+      const data = await fetchDashboardData(authToken); // Fetch the data
+      setDashboardData(data); // Store it in the state
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error);
+    }
+  };
+
+  // Call this function where needed, e.g., after success or when opening the dashboard view
+
 
   return (
-    <CHeader position="sticky" className="mb-4 p-0" ref={headerRef}>
+    <CHeader position="" className="mb-4 p-0" ref={headerRef}>
       <CContainer className="border-bottom px-4" fluid>
         <CHeaderToggler
           onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
@@ -169,17 +202,29 @@ const AppHeader = () => {
                 </div>
               )}
 
-              {shortenedData && (
-                <CModal visible={successVisible} onClose={() => setSuccessVisible(false)} className='qr-name'>
-                  <CModalHeader closeButton className='qr-name'>
+              {shortenedData && successVisible && (
+                <CModal visible={successVisible} onClose={() => setSuccessVisible(false)} className="qr-name">
+                  <CModalHeader closeButton className="qr-name">
                     <CModalTitle>Shortened URL</CModalTitle>
                   </CModalHeader>
                   <CModalBody>
-                    <p>Shortened Link: <a href={shortenedData.shortUrl}>{shortenedData.shortUrl}</a></p>
-                    <img src={shortenedData.qrCodeUrl} alt="QR Code" />
+                    <p>
+                      Shortened Link:{" "}
+                      <a href={shortenedData.shortUrl} target="_blank" rel="noopener noreferrer">
+                        {shortenedData.shortUrl}
+                      </a>
+                    </p>
+                    {shortenedData.qrCodeUrl ? (
+                      <img src={shortenedData.qrCodeUrl} alt="QR Code" style={{ width: "200px", height: "200px" }} />
+                    ) : (
+                      <p>No QR Code available</p>
+                    )}
                   </CModalBody>
                 </CModal>
               )}
+
+
+
             </CModalBody>
           </CModal>
 

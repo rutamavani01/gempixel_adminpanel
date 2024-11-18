@@ -73,8 +73,6 @@ const EditctaPoll = () => {
             ...formData,
             options: validOptions
         };
-
-        // Save to localStorage
         localStorage.setItem('ctaPollData', JSON.stringify(finalData));
         navigate('/base/navs');
     };

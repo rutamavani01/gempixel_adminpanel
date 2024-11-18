@@ -1,6 +1,8 @@
 import { CButton, CCard, CCardBody, CCollapse, CNav, CNavItem, CNavLink, CTabContent, CTabPane, CFormSwitch } from '@coreui/react';
 import React, { useState } from 'react';
 import { Pencil } from 'lucide-react';
+import CIcon from '@coreui/icons-react';
+import { cibMailRu, cibMessenger, cilDrop, cilInbox, cilPencil, cilText } from '@coreui/icons';
 
 const QrCode = () => {
   const [qrName, setQrName] = useState('');
@@ -91,7 +93,7 @@ const QrCode = () => {
       return (
         <div>
           <div className='mb-3'>
-            <p className='m-1'><b>  <span>T</span> Text</b></p>
+            <p className='m-1'>  <CIcon icon={cilText}/> Text</p>
           </div>
           <div className='mb-4'>
             <p className='m-1'><b>Your Text</b></p>
@@ -1060,7 +1062,7 @@ const QrCode = () => {
                     className={`btn btn-outline-gray active qr-name ${selectedStaticType === 'text' ? 'btn-outline-gray' : 'btn-outline-gray'}`}
                     onClick={() => setSelectedStaticType('text')}
                   >
-                    <span>T</span> Text
+                    <span><CIcon icon={cilText} /></span> Text
                   </button>
 
                   <button
@@ -1090,7 +1092,7 @@ const QrCode = () => {
               </div>
 
               {/* dynamic qr */}
-              <div className='mb-4'>
+              <div className='mb-4 qr-name'>
                 <p className='m-1'><b>Dynamic QR</b></p>
                 <div className='d-flex flex-wrap gap-2'>
                   <button
@@ -1147,15 +1149,15 @@ const QrCode = () => {
             </CCardBody>
           </CCard>
 
-          <CCard className='qr-name mb-3' style={{ width: '98%' }}>
+          <CCard className='qr-name mb-3 single-color' style={{ width: '98%' }}>
             <CCardBody>
               {renderForm()}
             </CCardBody>
           </CCard>
 
-          <CCard className="mb-3" style={{ width: '98%' }} onClick={() => setVisible(!visible)}>
+          <CCard className="mb-3 single-color"  style={{ width: '98%' }} onClick={() => setVisible(!visible)}>
             <CCardBody className='qr-name'>
-              <i className="icon-drop me-2"></i> Colors
+              <CIcon icon={cilDrop} color='dark' className='me-2 single-color' /> Colors
             </CCardBody>
           </CCard>
 
@@ -1164,7 +1166,7 @@ const QrCode = () => {
               <CCardBody>
                 <CNav variant="tabs">
                   <CNavItem>
-                    <CNavLink  className='single-color'
+                    <CNavLink className='single-color'
                       active={activeTab === 'singleColor'}
                       onClick={() => setActiveTab('singleColor')}
                     >
@@ -1172,7 +1174,7 @@ const QrCode = () => {
                     </CNavLink>
                   </CNavItem>
                   <CNavItem>
-                    <CNavLink  className='single-color'
+                    <CNavLink className='single-color'
                       active={activeTab === 'gradientColor'}
                       onClick={() => setActiveTab('gradientColor')}
                     >
@@ -1311,10 +1313,11 @@ const QrCode = () => {
             </CCard>
           </CCollapse>
 
-          <CCard  style={{ width: '98%' }}className="mb-3 qr-name " onClick={() => setIsExpanded(!isExpanded)}>
+          <CCard style={{ width: '98%' }} className="mb-3 qr-name " onClick={() => setIsExpanded(!isExpanded)}>
             <CCardBody className="d-flex align-items-center gap-2" style={{ cursor: 'pointer' }}>
               {/* <FaPencilAlt className="me-2" /> */}
-              <span>📱</span>
+              {/* <span>📱</span> */}
+              <CIcon icon={cilPencil}/>
               Design
             </CCardBody>
           </CCard>
@@ -1460,6 +1463,7 @@ const QrCode = () => {
                       <input
                         type="color"
                         name="background"
+                        id=''
                         value={colors.background}
                         onChange={handleColorChange}
                         style={{ marginLeft: '10px', width: '10%', padding: '3px' }}
@@ -1470,14 +1474,13 @@ const QrCode = () => {
                       <input
                         type="color"
                         name="foreground"
+                        id=''
                         value={colors.foreground}
                         onChange={handleColorChange}
                         style={{ marginLeft: '10px', width: '10%', padding: '3px' }}
                       />
                     </div>
-
                   </div>
-
                 </div>
 
                 <div className='design-box qr-name mb-3'>
@@ -1487,6 +1490,7 @@ const QrCode = () => {
                     className='form-control qr-name'
                     placeholder='e.g. 10'
                     value=""
+                    id=''
                   />
                   <p className='m-1' style={{ color: 'gray' }}><b>Error Correction</b></p>
                   <p className='m-1' style={{ color: 'gray' }}>Error correction allows better readability when code is damaged or dirty but increase QR data
@@ -1496,6 +1500,7 @@ const QrCode = () => {
                   className='form-control qr-name'
                   value={encryption}
                   onChange={(e) => setEncryption(e.target.value)}
+                  id=''
                 >
                   <option value="l">L (7%)</option>
                   <option value="m">M (15%)</option>

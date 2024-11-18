@@ -1,15 +1,27 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
 import {
+  cil3d,
   cilBell,
   cilCalculator,
+  cilCamera,
+  cilCenterFocus,
+  cilChartLine,
   cilChartPie,
+  cilCompress,
   cilCursor,
   cilDescription,
   cilDrop,
+  cilExposure,
+  cilLayers,
+  cilLink,
+  cilLoopCircular,
   cilNotes,
+  cilPaw,
   cilPencil,
   cilPuzzle,
+  cilQrCode,
+  cilReload,
   cilSpeedometer,
   cilStar,
 } from '@coreui/icons'
@@ -20,66 +32,69 @@ const _nav = [
     component: CNavItem,
     name: 'Dashboard',
     to: '/dashboard',
-    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+    icon: <CIcon icon={cil3d} customClassName="nav-icon" />,
     badge: {
       color: 'info',
       text: 'NEW',
-    }, className :"qr-name"
+    }, className: "qr-name"
   },
   {
     component: CNavItem,
     name: 'Bio Pages',
     to: '/theme/colors',
-    icon: <CIcon icon={cilDrop} customClassName="nav-icon"  />, className :"qr-name"
+    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />, className: "qr-name"
   },
   {
     component: CNavItem,
     name: 'QR Code',
     to: '/theme/typography',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />, className :"qr-name"
+    icon: <CIcon icon={cilQrCode} customClassName="nav-icon" />, className: "qr-name"
   },
   {
     component: CNavTitle,
-    name: 'My Channel', className :"qr-name"
+    name: 'Channels',
   },
   {
     component: CNavItem,
     name: 'My Channel',
     to: '/base/accordion',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />, className :"qr-name"
+    icon: <CIcon icon={cilDescription} customClassName="nav-icon" />, className: "qr-name"
   },
-
+  {
+    component: CNavTitle,
+    name: 'Link Management', className:'mb-2'
+  },
   {
     component: CNavItem,
     name: 'Link',
     to: '/base/breadcrumbs',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />, className :"qr-name"
+    icon: <CIcon icon={cilLink} customClassName="nav-icon" />, className: "qr-name"
   },
   {
     component: CNavItem,
     name: 'Archived Links',
-    to: '/base/cards', icon: <CIcon icon={cilPencil} customClassName="nav-icon" />, className :"qr-name"
+    to: '/base/cards', icon: <CIcon icon={cilChartLine} customClassName="nav-icon" />, className: "qr-name"
   },
   {
     component: CNavItem,
     name: 'Expired Links',
-    to: '/base/carousels', icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,className :"qr-name"
-  }, 
+    to: '/base/carousels', icon: <CIcon icon={cilExposure} customClassName="nav-icon" />, className: "qr-name"
+  },
   {
     component: CNavItem,
     name: 'Campaigns ',
-    to: '/base/collapses', icon: <CIcon icon={cilPencil} customClassName="nav-icon" />, className :"qr-name"
+    to: '/base/collapses', icon: <CIcon icon={cilCenterFocus} customClassName="nav-icon" />, className: "qr-name"
   },
   {
     component: CNavItem,
     name: 'Custom Splash',
-    to: '/base/list-groups', icon: <CIcon icon={cilPencil} customClassName="nav-icon" />, className :"qr-name"
+    to: '/base/list-groups', icon: <CIcon icon={cilCompress} customClassName="nav-icon" />, className: "qr-name"
   },
-  
+
   {
     component: CNavItem,
     name: 'CTA Overlay',
-    to: '/base/navs', icon: <CIcon icon={cilPencil} customClassName="nav-icon"  />, className :"qr-name"
+    to: '/base/navs', icon: <CIcon icon={cilLayers} customClassName="nav-icon" />, className: "qr-name"
   },
   // {
   //   component: CNavGroup,

@@ -1,44 +1,54 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   CCloseButton,
   CSidebar,
   CSidebarBrand,
   CSidebarFooter,
   CSidebarHeader,
-  CSidebarToggler,
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-
-import { AppSidebarNav } from './AppSidebarNav'
-
-import { logo } from 'src/assets/brand/logo'
-import { sygnet } from 'src/assets/brand/sygnet'
-
-// sidebar nav config
-import navigation from '../_nav'
+  CSidebarToggler
+} from '@coreui/react';
+import CIcon from '@coreui/icons-react';
+import { AppSidebarNav } from './AppSidebarNav';
+import { sygnet } from 'src/assets/brand/sygnet';
+import navigation from '../_nav';
 
 const AppSidebar = () => {
-  const dispatch = useDispatch()
-  const unfoldable = useSelector((state) => state.sidebarUnfoldable)
-  const sidebarShow = useSelector((state) => state.sidebarShow)
+  const dispatch = useDispatch();
+  const unfoldable = useSelector((state) => state.sidebarUnfoldable);
+  const sidebarShow = useSelector((state) => state.sidebarShow);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const themeClass = document.body.classList.contains('c-dark');
+    setIsDarkTheme(themeClass);
+
+    const themeChangeHandler = () => {
+      const newTheme = document.body.classList.contains('c-dark');
+      setIsDarkTheme(newTheme);
+    };
+
+    window.addEventListener('themeChange', themeChangeHandler);
+    return () => {
+      window.removeEventListener('themeChange', themeChangeHandler);
+    };
+  }, []);
 
   return (
     <CSidebar
       className="border-end"
-      colorScheme="dark"
       position="fixed"
       unfoldable={unfoldable}
       visible={sidebarShow}
-      onVisibleChange={(visible) => {
-        dispatch({ type: 'set', sidebarShow: visible })
-      }}
+      onVisibleChange={(visible) => dispatch({ type: 'set', sidebarShow: visible })}
     >
       <CSidebarHeader className="border-bottom">
         <CSidebarBrand to="/">
-          {/* <CIcon customClassName="sidebar-brand-full" icon={logo} height={32} /> */}
-          <img src='./public/white-logo.png'  style={{width:'65%'}}/>
+          <img
+            src={isDarkTheme ? '/dark-logo.png' : '/dark-logo.png'}
+            style={{ width: '65%' }}
+            alt="Logo"
+          />
           <CIcon customClassName="sidebar-brand-narrow" icon={sygnet} height={32} />
         </CSidebarBrand>
         <CCloseButton
@@ -54,7 +64,7 @@ const AppSidebar = () => {
         />
       </CSidebarFooter>
     </CSidebar>
-  )
-}
+  );
+};
 
-export default React.memo(AppSidebar)
+export default React.memo(AppSidebar);
