@@ -21,12 +21,14 @@ const CtaContact = React.lazy(() => import('./views/base/CtaContact/CtaContact')
 const EditCtaContact = React.lazy(() => import('./views/base/CtaContact/EditCtaContact'))
 const CtaCoupon = React.lazy(() => import('./views/base/CtaCoupon/CtaCoupon'))
 const CtaImage = React.lazy(() => import('./views/base/CtaImage/CtaImage'))
+const EditctaImage = React.lazy(() => import('./views/base/CtaImage/EditctaImage'))
+// const EditctaImage = React.lazy(() => import('./views/base/CtaImage/EditctaImage'))
 const CtaMessage = React.lazy(() => import('./views/base/CtaMessage/CtaMessage'))
 const EditCtaMessage = React.lazy(() => import('./views/base/CtaMessage/EditctaMessage'))
 const CtaNewsletter = React.lazy(() => import('./views/base/CtaNewsletter/CtaNewsletter'))
+const EditctaNewsletter = React.lazy(() => import('./views/base/CtaNewsletter/EditctaNewsletter'))
 const CtaPoll = React.lazy(() => import('./views/base/CtaPoll/CtaPoll'))
 const EditctaPoll = React.lazy(() => import('./views/base/CtaPoll/EditctaPoll'))
-
 
 const Paginations = React.lazy(() => import('./views/base/paginations/Paginations'))
 const Placeholders = React.lazy(() => import('./views/base/placeholders/Placeholders'))
@@ -91,9 +93,11 @@ const routes = [
   { path: '/base/EditCtaContact', name: 'EditCtaContact', element: EditCtaContact },
   { path: '/base/CtaCoupon', name: 'CtaCoupon', element: CtaCoupon },
   { path: '/base/CtaImage', name: 'CtaImage', element: CtaImage },
+  { path: '/base/EditctaImage', name: 'EditctaImage', element: EditctaImage },
   { path: '/base/CtaMessage', name: 'CtaMessage', element: CtaMessage },
   { path: '/base/EditCtaMessage', name: 'EditCtaMessage', element: EditCtaMessage },
   { path: '/base/CtaNewsletter', name: 'CtaNewsletter', element: CtaNewsletter },
+  { path: '/base/EditctaNewsletter', name: 'EditctaNewsletter', element: EditctaNewsletter },
   { path: '/base/CtaPoll', name: 'CtaPoll', element: CtaPoll },
   { path: '/base/EditctaPoll', name: 'EditctaPoll', element: EditctaPoll },
 

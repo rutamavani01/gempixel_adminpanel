@@ -255,13 +255,11 @@
 }
 
 .sidebar-nav .nav-title {
-    // padding: var(--cui-sidebar-nav-title-padding-y) var(--cui-sidebar-nav-title-padding-x);
     padding: 2px;
     margin-top: var(--cui-sidebar-nav-title-margin-top);
     font-size: 60%;
     margin-left: 5px;
     font-weight: 400;
-    // color: var(--cui-sidebar-nav-title-color);
     color: gray;
     text-transform: uppercase;
     transition: height 0.15s, margin 0.15s;
@@ -274,6 +272,7 @@
 .sidebar-header {
     border-bottom: 0px !important;
 }
-.simplebar-scrollable-y{
-overflow: hidden;
+
+.simplebar-scrollable-y {
+    overflow: hidden;
 }

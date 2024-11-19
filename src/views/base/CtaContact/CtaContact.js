@@ -1,6 +1,6 @@
 import { cilPlus } from '@coreui/icons';
 import CIcon from '@coreui/icons-react';
-import { CButton, CCard, CCardBody, CCol, CCollapse, CForm, CFormInput, CFormTextarea, CRow } from '@coreui/react'
+import { CButton, CCard, CCardBody, CCol, CCollapse, CForm, CFormInput, CRow } from '@coreui/react'
 import React, { useState } from 'react';
 import Select from 'react-select';
 import { useNavigate } from 'react-router-dom'

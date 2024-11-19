@@ -6,7 +6,7 @@ import { useState } from 'react';
 import Select from 'react-select';
 import { useNavigate } from 'react-router-dom'
 
-const CtaNewsletter = () => {
+const EditctaNewsletter = () => {
   const navigate = useNavigate()
   const [textLabelsOpen, setTextLabelsOpen] = useState(false);
   const [appearanceOpen, setAppearanceOpen] = useState(false);
@@ -49,7 +49,6 @@ const CtaNewsletter = () => {
     localStorage.setItem('ctaFormData', JSON.stringify(formData));
     navigate('/base/navs');
   };
-
   return (
     <CCardBody>
       <h6>CTA Newsletter</h6>
@@ -217,7 +216,6 @@ const CtaNewsletter = () => {
                 <CFormInput
                   type="email"
                   placeholder="johnsmith@company.com"
-                  id='email'
                   aria-label="Email"
                   className="me-2 qr-name border-0"
                 />
@@ -237,12 +235,12 @@ const CtaNewsletter = () => {
               </p>
               <pre style={{ backgroundColor: '#f8f9fa', padding: '1rem', borderRadius: '5px', fontSize: '11px' }}>
                 {`{
-                    "type": "newsletter",
-                    "data": {
-                      "email": "johnsmith@company.com",
-                      "date": "2020-01-01 12:00"
-                    }
-                  }`}
+                  "type": "newsletter",
+                  "data": {
+                    "email": "johnsmith@company.com",
+                    "date": "2020-01-01 12:00"
+                  }
+                }`}
               </pre>
             </CCard>
           </div>
@@ -253,4 +251,5 @@ const CtaNewsletter = () => {
     </CCardBody>
   )
 }
-export default CtaNewsletter
+
+export default EditctaNewsletter
