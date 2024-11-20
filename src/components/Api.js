@@ -3,15 +3,15 @@ import axios from 'axios';
 // login
 export const loginUser = async (username, password) => {
     try {
-        const response = await axios.post('http://192.168.1.9:8000/login', {
-            username,
-            password,
-        });
+        // const response = await axios.post('http://192.168.1.9:8000/login', {
+        //     username,
+        //     password,
+        // });
 
-        if (response.status === 200) {
-            localStorage.setItem('authToken', response.data.Token);
+        // if (response.status === 200) {
+            // localStorage.setItem('authToken', response.data.Token);
             return { success: true, data: response.data.Token };
-        }
+        // }
     } catch (error) {
         console.error('Error logging in:', error);
         return { success: false, error: error.message };

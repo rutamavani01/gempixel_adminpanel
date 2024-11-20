@@ -65,7 +65,7 @@ const Carousels = () => {
 
   return (
     <div className='col-12 row justify-content-between'>
-      <h6 className="mb-4">Recent Links</h6>
+       <h6 className='title-text'>Expired Links</h6>
       <div className='col-8'>
         <CCol>
           <CCard>

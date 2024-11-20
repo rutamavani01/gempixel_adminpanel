@@ -31,6 +31,7 @@ const CtaPoll = React.lazy(() => import('./views/base/CtaPoll/CtaPoll'))
 const EditctaPoll = React.lazy(() => import('./views/base/CtaPoll/EditctaPoll'))
 
 const Paginations = React.lazy(() => import('./views/base/paginations/Paginations'))
+const Pixel = React.lazy(() => import('./views/base/Pixel/AddPixel'))
 const Placeholders = React.lazy(() => import('./views/base/placeholders/Placeholders'))
 const Popovers = React.lazy(() => import('./views/base/popovers/Popovers'))
 const Progress = React.lazy(() => import('./views/base/progress/Progress'))
@@ -103,6 +104,7 @@ const routes = [
 
 
   { path: '/base/paginations', name: 'Paginations', element: Paginations },
+  { path: '/base/pixel', name: 'pixel', element: Pixel },
   { path: '/base/placeholders', name: 'Placeholders', element: Placeholders },
   { path: '/base/popovers', name: 'Popovers', element: Popovers },
   { path: '/base/progress', name: 'Progress', element: Progress },

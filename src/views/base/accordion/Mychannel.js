@@ -27,11 +27,12 @@ const Accordion = () => {
 
   return (
     <CRow>
+
       <CCol xs="12">
         <CCardHeader className='mb-4'>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div className='qr-name'>
-              <h5>Channels</h5>
+              <h6 className='title-text'>Channels</h6>
             </div>
             <div className='qr-name'>
               <CButton
@@ -98,7 +99,7 @@ const Accordion = () => {
           </CModalFooter>
         </CModal>
 
-        
+
 
 
       </CCol>

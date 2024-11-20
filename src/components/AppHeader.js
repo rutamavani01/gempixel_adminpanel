@@ -292,7 +292,6 @@ const AppHeader = () => {
           <AppHeaderDropdown />
         </CHeaderNav>
       </CContainer>
-
     </CHeader >
   )
 }

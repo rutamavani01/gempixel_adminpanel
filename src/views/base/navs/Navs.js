@@ -38,7 +38,7 @@ const Navs = () => {
         <CCardHeader className="mb-4">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div className="qr-name">
-              <h5>CTA Overlay</h5>
+            <h6 className='title-text'>CTA Overlay</h6>
             </div>
             <div className="qr-name">
               <CButton className="qr-name" color="primary" style={{ marginRight: '10px' }} onClick={() => {

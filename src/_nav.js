@@ -8,6 +8,7 @@ import {
   cilCenterFocus,
   cilChartLine,
   cilChartPie,
+  cilCompass,
   cilCompress,
   cilCursor,
   cilDescription,
@@ -62,7 +63,7 @@ const _nav = [
   },
   {
     component: CNavTitle,
-    name: 'Link Management', className:'mb-2'
+    name: 'Link Management', className: 'mb-2'
   },
   {
     component: CNavItem,
@@ -95,6 +96,11 @@ const _nav = [
     component: CNavItem,
     name: 'CTA Overlay',
     to: '/base/navs', icon: <CIcon icon={cilLayers} customClassName="nav-icon" />, className: "qr-name"
+  },
+  {
+    component: CNavItem,
+    name: 'Tracking Pixels',
+    to: '/base/paginations', icon: <CIcon icon={cilCompass} customClassName="nav-icon" />, className: "qr-name"
   },
   // {
   //   component: CNavGroup,
