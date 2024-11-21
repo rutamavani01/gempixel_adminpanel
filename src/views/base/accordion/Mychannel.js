@@ -30,19 +30,19 @@ const Accordion = () => {
 
       <CCol xs="12">
         <CCardHeader className='mb-4'>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div className='d-flex justify-content-between '>
             <div className='qr-name'>
               <h6 className='title-text'>Channels</h6>
             </div>
             <div className='qr-name'>
-              <CButton
-                className='qr-name'
+              <button
+                className='qr-name button'
                 color="primary"
                 style={{ marginRight: '10px' }}
                 onClick={() => setModalVisible(true)}
               >
                 Create Channel
-              </CButton>
+              </button>
             </div>
           </div>
         </CCardHeader>
@@ -92,9 +92,9 @@ const Accordion = () => {
 
           </CModalBody>
           <CModalFooter className='qr-name'>
-            <CButton className='qr-name' color='secondary' style={{ color: 'white', padding: '2px 3px', borderRadius: '0px' }} onClick={() => setModalVisible(false)}>
+            <button className='qr-name' color='secondary' style={{ color: 'white', padding: '2px 3px', borderRadius: '0px' }} onClick={() => setModalVisible(false)}>
               Close
-            </CButton>
+            </button>
             <CButton className='qr-name' style={{ backgroundColor: '#28a745', color: 'white', padding: '2px 3px', borderRadius: '0px' }}>Create Channel</CButton>
           </CModalFooter>
         </CModal>

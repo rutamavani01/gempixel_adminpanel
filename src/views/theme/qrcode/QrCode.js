@@ -1526,10 +1526,10 @@ const QrCode = () => {
             <CCardBody>
               <div className='row'>
                 <div className='col-6'>
-                  <button className='btn preview-btn text-white qr-name w-100'>Preview</button>
+                  <button className='btn preview-btn btn-info text-white qr-name w-100'>Preview</button>
                 </div>
                 <div className='col-6'>
-                  <button className='btn generate-btn btn-success qr-name w-100 text-white'>Generate QR</button>
+                  <button className='btn generate-btn btn-success qr-name w-100 text-white' >Generate QR</button>
                 </div>
               </div>
             </CCardBody>

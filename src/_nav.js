@@ -3,6 +3,7 @@ import CIcon from '@coreui/icons-react'
 import {
   cil3d,
   cilBell,
+  cilBrowser,
   cilCalculator,
   cilCamera,
   cilCenterFocus,
@@ -14,6 +15,7 @@ import {
   cilDescription,
   cilDrop,
   cilExposure,
+  cilGlobeAlt,
   cilLayers,
   cilLink,
   cilLoopCircular,
@@ -101,6 +103,16 @@ const _nav = [
     component: CNavItem,
     name: 'Tracking Pixels',
     to: '/base/paginations', icon: <CIcon icon={cilCompass} customClassName="nav-icon" />, className: "qr-name"
+  },
+  {
+    component: CNavItem,
+    name: 'Branded Domains',
+    to: '/base/placeholders', icon: <CIcon icon={cilGlobeAlt} customClassName="nav-icon" />, className: "qr-name"
+  },
+  {
+    component: CNavItem,
+    name: 'Integrations',
+    to: '/base/progress',
   },
   // {
   //   component: CNavGroup,

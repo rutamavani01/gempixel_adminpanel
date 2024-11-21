@@ -26,7 +26,7 @@ const ListGroups = () => {
           </div>
           <div className='qr-name'>
             <CButton
-              className='qr-name'
+              className='qr-name button' 
               color="primary"
               style={{ marginRight: '10px' }}
             // onClick={() => setModalVisible(true)}
@@ -62,7 +62,7 @@ const ListGroups = () => {
               Create a Custom Splash
             </CButton> */}
 
-            <CButton style={{ backgroundColor: '#5856d6', color: 'white' }} className='qr-name'
+            <CButton  className='qr-name button'
               onClick={() => {
                 navigate('/base/Customesplash')
               }}

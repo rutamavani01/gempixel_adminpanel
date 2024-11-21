@@ -12,13 +12,13 @@ const Collapses = () => {
           <h6 className='title-text'>Campaigns </h6>
           </div>
           <div className='qr-name'>
-            <CButton
+            <button
               color="primary"
-              style={{ marginRight: '10px' }} className='qr-name '
+              style={{ marginRight: '10px' }} className='qr-name button'
               onClick={() => setModalVisible(true)}
             >
               Create a Campaign
-            </CButton>
+            </button>
           </div>
         </div>
       </CCardHeader>
@@ -44,13 +44,13 @@ const Collapses = () => {
         <CCardBody>
           <div className='qr-name' style={{ textAlign: 'center' }}>
             <p>No content found. You can create some.</p>
-            <CButton
-              style={{ backgroundColor: '#5856d6', color: 'white' }}
-              className='qr-name'
+            <button
+           
+              className='qr-name button'
               onClick={() => setModalVisible(true)}
             >
               Create a Campaign
-            </CButton>
+            </button>
           </div>
         </CCardBody>
       </CCard>

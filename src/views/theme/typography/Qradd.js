@@ -17,8 +17,8 @@ const Typography = () => {
                   <span style={{ marginLeft: '20px' }}>23 scans</span>
                 </div>
                 <div className='qr-name'>
-                  <CButton className='qr-name' color="primary" style={{ marginRight: '10px' }}>Create QR</CButton>
-                  <CButton className='qr-name' color="dark">Bulk QR</CButton>
+                  <button className='qr-name button' color="primary" style={{ marginRight: '10px' }}>Create QR</button>
+                  <button className='qr-name button' style={{backgroundColor:'#000000'}} color="dark">Bulk QR</button>
                 </div>
               </div>
             </CCardHeader>
@@ -33,14 +33,14 @@ const Typography = () => {
               </CInputGroup>
               <div className='qr-name' style={{ textAlign: 'center', padding: '20px 0' }}>
                 <p>No content found. You can create some.</p>
-                <CButton style={{ backgroundColor: '#5856d6', color: 'white' }} className='qr-name'
+                <button  className='qr-name button'
                   onClick={() => {
                     console.log('Navigating to QR code')
                     navigate('/theme/qrcode')
                   }}
                 >
                   Create QR
-                </CButton>
+                </button>
               </div>
             </CCardBody>
           </CCard>

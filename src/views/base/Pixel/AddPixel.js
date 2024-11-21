@@ -1,4 +1,4 @@
-import { CCard, CCardBody, CFormInput } from '@coreui/react';
+import { CButton, CCard, CCardBody, CFormInput } from '@coreui/react';
 import React, { useState } from 'react';
 import Select from 'react-select';
 
@@ -19,37 +19,51 @@ const AddPixel = () => {
 
     return (
         <CCardBody>
-            <h6 className='title-text'>Custom Splash Pages</h6>
+            <h6 className='title-text'>Add Pixel</h6>
             <CCardBody>
-                <div className='col-12 d-flex'>
+                <div className='col-12 d-flex flex-wrap'>
                     <div className='col-8'>
-                        <CCard className='p-2'>
+                        <CCard className='p-3 mt-3'>
                             <div className='col-12 d-flex'>
                                 <div className='col-4'>
-                                    <p>Pixel Provider</p>
-                                    <Select
-                                        options={options}
-                                        value={selectedOption}
-                                        onChange={handleChange}
-                                        isSearchable
-            
-                                        onInputChange={() => { }}
-                                        styles={{width: '98%'}}
-                                    />
+                                    <div className='' style={{ width: '96%' }}>
+                                        <p>Pixel Provider</p>
+                                        <Select
+                                            options={options}
+                                            value={selectedOption}
+                                            onChange={handleChange}
+                                            isSearchable
+
+                                            onInputChange={() => { }}
+
+                                        />
+                                    </div>
                                 </div>
                                 <div className='col-4'>
                                     <p>Pixel Provider</p>
-                                    <CFormInput placeholder='Shopify Campaign' style={{width:'99%'}} />
+                                    <CFormInput placeholder='Shopify Campaign' style={{ width: '96%' }} />
                                 </div>
                                 <div className='col-4'>
                                     <p>Pixel Tag</p>
-                                    <CFormInput style={{width:'99%'}} placeholder="e.g. Numerical or alphanumerical values only" />
+                                    <CFormInput style={{ width: '96%' }} placeholder="e.g. Numerical or alphanumerical values only" />
                                 </div>
                             </div>
-                        </CCard>
 
+                            <button color="primary" type="button" className=' mt-3 button' style={{ width: '12%' }}>
+                                Add Pixel
+                            </button>
+                        </CCard>
                     </div>
-                    <div className='col-4'></div>
+                    <div className='col-4'>
+                        <CCard className='p-3 m-3'>
+                            <p>What are tracking pixels?</p>
+                            <p>Ad platforms such as Facebook and Adwords provide a conversion tracking tool to allow you to gather data on your customers and how they behave on your website. By adding your pixel ID from either of the platforms, you will be able to optimize marketing simply by using short URLs.</p>
+                            <button color="primary" type="button" className='qr-name mt-3 button' style={{ width: '20%' }}>
+                                Create
+                            </button>
+                        </CCard>
+                    </div>
+
                 </div>
             </CCardBody>
         </CCardBody>

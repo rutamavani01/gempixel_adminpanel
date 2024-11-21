@@ -41,11 +41,11 @@ const Navs = () => {
             <h6 className='title-text'>CTA Overlay</h6>
             </div>
             <div className="qr-name">
-              <CButton className="qr-name" color="primary" style={{ marginRight: '10px' }} onClick={() => {
+              <button className="qr-name button" color="primary" style={{ marginRight: '10px' }} onClick={() => {
                 navigate('/base/OverlayCreate')
               }}>
                 Create
-              </CButton>
+              </button>
             </div>
           </div>
         </CCardHeader>
@@ -55,13 +55,13 @@ const Navs = () => {
           <CCardBody>
             <div className='qr-name' style={{ textAlign: 'center' }}>
               <p>No content found. You can create some.</p>
-              <CButton style={{ backgroundColor: '#5856d6', color: 'white' }} className='qr-name'
+              <button className='qr-name button'
                 onClick={() => {
                   navigate('/base/OverlayCreate')
                 }}
               >
                 Create a Custom Splash
-              </CButton>
+              </button>
             </div>
           </CCardBody>
         </CCard>

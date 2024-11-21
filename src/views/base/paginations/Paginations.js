@@ -42,7 +42,7 @@ const Paginations = () => {
         <CCardBody>
           <div className='qr-name' style={{ textAlign: 'center' }}>
             <p>No content found. You can create some.</p>
-            <CButton style={{ backgroundColor: '#5856d6', color: 'white' }} className='qr-name'
+            <CButton  className='qr-name button'
               onClick={() => {
                 navigate('/base/pixel')
               }}

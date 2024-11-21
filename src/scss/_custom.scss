@@ -174,6 +174,8 @@
 .preview-btn {
     background-color: #3b7ddd;
     padding: 4px;
+    border: 0;
+    border-radius: 4px;
 }
 
 .generate-btn {
@@ -285,4 +287,14 @@
     font-size: 21px;
     font-weight: 500;
     margin-bottom: 40px;
+}
+
+.button{
+    background-color: #3b7ddd;
+    color: white;
+    padding: 4px 5px ;
+    font-size: 14px;
+    padding: '4px 5px';
+    border-radius: 0px;
+    border: 0;
 }
